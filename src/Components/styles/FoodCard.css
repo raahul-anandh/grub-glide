@@ -1,0 +1,38 @@
+.foodcard {
+  position: relative;
+  display: grid;
+  padding-right: 10px;
+  color: #eeeeee;
+  font-weight: ;
+  grid-template-columns: 170px 170px;
+  background-color: #1a1a1b;
+  column-gap: 0px;
+  row-gap: 0px;
+  top: 100px;
+  padding: 25px;
+  border-radius: 50px;
+  width: min-content;
+  transition: background-color 0.3s ease;
+  /* height: 200px; */
+}
+
+.foodcard:hover {
+  background-color: #16c1dfd4;
+}
+.foodcard img {
+  width: 140px;
+  height: 125px;
+  border-radius: 25px;
+}
+
+.foodcard h1 {
+  font-size: 1.2rem;
+}
+
+.foodcard h2 {
+  font-size: 1rem;
+}
+
+.foodcard p {
+  font-size: 0.8rem;
+}

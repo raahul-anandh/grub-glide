@@ -1,0 +1,18 @@
+.navi {
+  display: inline;
+  transition: color 0.3s ease;
+  padding: 15px;
+}
+
+.navi a {
+  color: #fff;
+  font-family: "Red Hat Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 1.5rem;
+  text-decoration: none;
+  /* padding-top: 100%; */
+}
+
+.navi:hover {
+  background-color: hwb(189 3% 42%);
+}

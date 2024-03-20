@@ -1,0 +1,18 @@
+.cuisine {
+  /* display: flex;
+  flex-direction: row;*/
+  overflow: auto;
+  /*  */
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.cuisine-container {
+  padding-top: 100px;
+}
+.cuisine-container h1 {
+  /* color: black; */
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}

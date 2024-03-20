@@ -1,0 +1,13 @@
+.searchbar input {
+  background-color: #333;
+  width: 200%;
+  padding: 8px 12px;
+  border-radius: 20px; /* Adjust the value to change the roundness */
+  border: 1px solid #ccc;
+  outline: none; /* Remove the default outline */
+  transition: border-color 0.3s ease;
+}
+
+.searchbar input:focus {
+  border-color: hwb(189 3% 42%);
+}
