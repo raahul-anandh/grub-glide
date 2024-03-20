@@ -1,0 +1,1 @@
+This is a Food Ordering Web Application which is designed for the North Square Cafetaria in VIT Chennai. This Web App runs smoothly on both Desktop and Mobile Phones.
