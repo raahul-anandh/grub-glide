@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles/SearchBar.css";
-cuStyle = { display: "inline" };
+const cuStyle = { display: "inline" };
 
 function SearchBar() {
   return (

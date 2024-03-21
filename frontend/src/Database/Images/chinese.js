@@ -2,7 +2,7 @@ const chinese = [
   {
     id: 1,
     foodName: "Veg Noodles",
-    imageURL: "./images/VegNoodles.jpeg",
+    imageURL: "./images/chinese/VegNoodles.jpeg",
     servings: 1,
     price: 100,
   },
@@ -10,7 +10,7 @@ const chinese = [
   {
     id: 2,
     foodName: "Egg Noodles",
-    imageURL: "./images/EggNoodles.jpeg",
+    imageURL: "./images/chinese/EggNoodles.jpeg",
     servings: 1,
     price: 110,
   },
@@ -18,7 +18,7 @@ const chinese = [
   {
     id: 3,
     foodName: "Chicken Noodles",
-    imageURL: "./images/ChickenNoodles.jpeg",
+    imageURL: "./images/chinese/ChickenNoodles.jpeg",
     servings: 1,
     price: 130,
   },
@@ -26,7 +26,7 @@ const chinese = [
   {
     id: 4,
     foodName: "Schezwan Veg Noodles",
-    imageURL: "./images/SchezVegNoodles.jpeg",
+    imageURL: "./images/chinese/SchezVegNoodles.jpeg",
     servings: 1,
     price: 110,
   },
@@ -34,7 +34,7 @@ const chinese = [
   {
     id: 5,
     foodName: "Schezwan Egg Noodles",
-    imageURL: "./images/SchezEggNoodles.jpeg",
+    imageURL: "./images/chinese/SchezEggNoodles.jpeg",
     servings: 1,
     price: 120,
   },
@@ -42,7 +42,7 @@ const chinese = [
   {
     id: 6,
     foodName: "Schezwan Chicken Noodles",
-    imageURL: "./images/SchezChickenNoodles.jpeg",
+    imageURL: "./images/chinese/SchezChickenNoodles.jpeg",
     servings: 1,
     price: 150,
   },
@@ -50,7 +50,7 @@ const chinese = [
   {
     id: 7,
     foodName: "Veg Fried Rice",
-    imageURL: "./images/VegFriedRice.jpeg",
+    imageURL: "./images/chinese/VegFriedRice.jpeg",
     servings: 1,
     price: 120,
   },
@@ -58,7 +58,7 @@ const chinese = [
   {
     id: 8,
     foodName: "Egg Fried Rice",
-    imageURL: "./images/EggFriedRice.jpeg",
+    imageURL: "./images/chinese/EggFriedRice.jpeg",
     servings: 1,
     price: 120,
   },
@@ -66,7 +66,7 @@ const chinese = [
   {
     id: 9,
     foodName: "Chicken Fried Rice",
-    imageURL: "./images/ChickenFriedRice.jpeg",
+    imageURL: "./images/chinese/ChickenFriedRice.jpeg",
     servings: 1,
     price: 120,
   },
@@ -74,7 +74,7 @@ const chinese = [
   {
     id: 10,
     foodName: "Schezwan Veg Fried Rice",
-    imageURL: "./images/SchezVegFriedRice.jpeg",
+    imageURL: "./images/chinese/SchezVegFriedRice.jpeg",
     servings: 1,
     price: 120,
   },
@@ -82,7 +82,7 @@ const chinese = [
   {
     id: 11,
     foodName: "Schezwan Egg Fried Rice",
-    imageURL: "./images/SchezEggFriedRice.jpeg",
+    imageURL: "./images/chinese/SchezEggFriedRice.jpeg",
     servings: 1,
     price: 120,
   },
@@ -90,21 +90,21 @@ const chinese = [
   {
     id: 12,
     foodName: "Schezwan Chicken Fried Rice",
-    imageURL: "./images/SchezChickenFriedRice.jpeg",
+    imageURL: "./images/chinese/SchezChickenFriedRice.jpeg",
     servings: 1,
     price: 120,
   },
   {
     id: 13,
     foodName: "Dragon Chicken",
-    imageURL: "./images/DragonChicken.jpeg",
+    imageURL: "./images/chinese/DragonChicken.jpeg",
     servings: 1,
     price: 120,
   },
   {
     id: 14,
     foodName: "Chilli Paneer",
-    imageURL: "./images/ChilliPaneer.jpeg",
+    imageURL: "./images/chinese/ChilliPaneer.jpeg",
     servings: 1,
     price: 120,
   },
