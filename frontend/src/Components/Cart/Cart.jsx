@@ -1,8 +1,8 @@
 import React from "react";
 import { CreateCartItem } from "./CartItem.jsx";
-import chinese from '../Database/Images/chinese.js';
+import chinese from '../../Database/Images/chinese.js';
 
-import "./styles/Cart.css";
+import "../styles/Cart.css";
 
 function Cart(){
     return(
