@@ -1,17 +1,19 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Cart from "./Components/Cart";
+import Cart from "./Components/Cart/Cart";
 import Navbar from "./Components/Navbar";
 import Cuisine from "./Components/Cuisine";
+import Account from "./Components/Account/Account";
 
 import "./App.css";
 function App() {
   return (
     <div className="mainRoot">
       <Router>
-        <Navbar/>
+        {/* <Navbar/> */}
         <Routes>
           <Route path = "/" element = {<Cuisine/>}/>
           <Route path = "/cart" element={<Cart/>}/>
+          <Route path = "/account" element={<Account/>}/>
         </Routes>
       </Router>
     </div>
