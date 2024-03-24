@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import EditProfile from './EditProfile';
 import OrderHistory from './OrderHistory';
@@ -6,6 +7,7 @@ import OrderHistory from './OrderHistory';
 import '../styles/Account.css';
 
 function Account(){
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('editProfile');
   const name = "Smriti";
 
@@ -13,6 +15,10 @@ function Account(){
     setActiveTab(tab);
   };
 
+  const logout = () => {
+    alert("Logged out!");
+    navigate("/");
+  }
   return (
     <div className="account-page">
       <div className='header'><h1>Hello, {name}!</h1></div>
@@ -28,7 +34,7 @@ function Account(){
             onClick={() => handleTabChange('orderHistory')}>
             Order History
           </button>
-          <button>
+          <button onClick = {logout}>
             Logout
           </button>
         </div>
