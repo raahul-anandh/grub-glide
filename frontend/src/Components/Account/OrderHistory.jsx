@@ -6,20 +6,20 @@ function OrderHistory(){
           id: 1,
           date: '2024-03-20',
           items: [
-            { name: 'Pizza', price: 10.99 },
-            { name: 'Burger', price: 6.99 },
+            { name: 'Veg Noodles', quantity: 1, price: 100,},
+            { name: 'Egg Noodles', quantity: 1, price: 110 },
           ],
-          total: 17.98,
+          total: 210,
           status: 'Delivered',
         },
         {
           id: 2,
           date: '2024-03-18',
           items: [
-            { name: 'Salad', price: 8.49 },
-            { name: 'Smoothie', price: 4.99 },
+            { name: 'Veg Fried Rice', quantity: 1, price: 120 },
+            { name: 'Chilli Paneer', quantity: 1, price: 120 },
           ],
-          total: 13.48,
+          total: 240,
           status: 'Pending',
         },
       ]);
@@ -32,6 +32,8 @@ function OrderHistory(){
                 <tr>
                   <th>Order Date</th>
                   <th>Items</th>
+                  <th>Quantity</th>
+                  <th>Price</th>
                   <th>Total</th>
                   <th>Status</th>
                 </tr>
@@ -47,7 +49,21 @@ function OrderHistory(){
                         ))}
                       </ul>
                     </td>
-                    <td>${order.total.toFixed(2)}</td>
+                    <td>
+                      <ul>
+                      {order.items.map((item, index) => (
+                          <li key={index}>{item.quantity}</li>
+                        ))}
+                      </ul>
+                    </td>
+                    <td>
+                      <ul>
+                      {order.items.map((item, index) => (
+                          <li key={index}>{item.price}</li>
+                        ))}
+                      </ul>
+                    </td>
+                    <td>₹{order.total.toFixed(2)}</td>
                     <td>{order.status}</td>
                   </tr>
                 ))}
