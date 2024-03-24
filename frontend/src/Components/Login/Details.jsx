@@ -71,7 +71,7 @@ function DetailsForm(props) {
 
   return (
     <div className={props.className}>
-      <h2>Edit Profile</h2>
+      <h2>{props.header}</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Name:</label>

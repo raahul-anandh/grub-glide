@@ -22,6 +22,7 @@ function EditProfile(){
 
     return(
         <DetailsForm className="edit-profile"
+        header="Edit Profile"
         name={formData.nameValue}
         email={formData.emailValue}
         phone={formData.phoneValue}
