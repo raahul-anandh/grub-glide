@@ -1,4 +1,13 @@
-.account-page {
+
+  .account-page {
+    margin: 8% 2%;
+  }
+
+  .header{
+    color: white;
+  }
+
+  .account-details{
     display: flex;
   }
   
@@ -22,6 +31,9 @@
     cursor: pointer;
   }
   
+  .sidebar button:hover{
+    background-color: #8d8c8c;
+  }
   .sidebar button.active {
     background-color: #666;
   }
@@ -64,6 +76,9 @@
     cursor: pointer;
   }
   
+  .error{
+    color: red;
+  }
   .order-history {
     max-width: 600px;
     margin: 0 auto;

@@ -1,31 +1,32 @@
+import { useEffect, useState } from "react";
+import DetailsForm from "../Login/Details";
 function EditProfile(){
+  const [formData, setFormData] = useState({
+   
+    nameValue: "",
+    emailValue: '',
+    phoneValue: '',
+    passwordValue: '', 
+  })
+
+  useEffect(() => {
+    setFormData(
+      {
+        nameValue: "Smriti",
+        emailValue: 'smriti123@gmail.com',
+        phoneValue: '3940490489',
+        passwordValue: 'helloWorld2',
+      }
+    )
+  }, [formData.nameValue, formData.emailValue, formData.emailValue, formData.passwordValue])
+
     return(
-        <div className="edit-profile">
-            <h2>Edit Profile</h2>
-            <form>
-              <div>
-                <label>Name:</label>
-                <input type="text" />
-              </div>
-              <div>
-                <label>Email:</label>
-                <input type="email" />
-              </div>
-              <div>
-                <label>Phone:</label>
-                <input type="text" />
-              </div>
-              <div>
-                <label>Password:</label>
-                <input type="password" />
-              </div>
-              <div>
-                <label>Confirm Password:</label>
-                <input type="password" />
-              </div>
-              <button type="submit">Save Changes</button>
-            </form>
-          </div>
+        <DetailsForm className="edit-profile"
+        name={formData.nameValue}
+        email={formData.emailValue}
+        phone={formData.phoneValue}
+        password={formData.passwordValue}
+        />
     )
 }
 export default EditProfile;
