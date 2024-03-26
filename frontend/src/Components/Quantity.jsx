@@ -18,7 +18,7 @@ const QuantityButton = ({ initialQuantity = 0, onQuantityChange }) => {
 
   return (
     <div className="quantity-button">
-      <button onClick={decreaseQuantity}>-</button>
+      <button onClick={decreaseQuantity} style={{width:"1.5vw"}}>-</button>
       <span className="quantity">{quantity}</span>
       <button onClick={increaseQuantity}><i class="fa-solid fa-plus"></i></button>
     </div>

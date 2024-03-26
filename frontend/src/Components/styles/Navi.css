@@ -19,6 +19,7 @@
   box-sizing: border-box;
   padding-left: 2vh;
   padding-right: 2vh;
+  align-items: center;
 }
 
  .navi-container:hover {
