@@ -1,39 +1,71 @@
 .cuisine {
   overflow-x: scroll;
-  /* overflow-y: hidden; */
   display: flex;
   flex-direction: row;
   height: auto;
   padding-bottom: 6vh;
   gap: 20px;
-  /* -ms-overflow-style: none;   */
   scrollbar-width: none;
-  /* height:max-content */
-  /* padding-bottom: 70px; */
 }
 
-.cuisine:-webkit-scrollbar {
-  /* display: none; */
-}
-
-.cuisine *{
-    font-family: "Noto Sans", sans-serif;
-    /* font-optical-sizing: auto;
-    font-weight: <weight>;
-    font-style: normal;
-    font-variation-settings:
-    "wdth" 100; */
+.cuisine * {
+  font-family: "Noto Sans", sans-serif;
 }
 
 .all-cuisines {
-  padding-left:3%;
-  position:relative;
-  top:130px;
+  padding-left: 3%;
+  position: relative;
+  top: 130px;
 }
 
 .cuisine-name {
-  font-size:2em;
+  font-size: 2em;
   font-family: "Comfortaa", sans-serif;
   color: hsl(120, 17%, 50%);
   padding-bottom: 3vh;
+}
+
+.contact-section {
+  position: relative;
+  background-color: #1a1a1b;
+
+}
+
+.contact-content {
+  margin: 10% 3%;
+}
+
+.contact-section h2 {
+  font-size: 1.5em;
+  color: #333;
+}
+
+.contact-section p {
+  margin-bottom: 20px;
+}
+
+.contact-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-section input,
+.contact-section textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.contact-section button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.contact-section button:hover {
+  background-color: #45a049;
 }
