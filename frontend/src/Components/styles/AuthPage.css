@@ -1,11 +1,12 @@
 .auth-page {
     max-width: 400px;
     margin: 0 auto;
-    margin-top: 8%;
+    margin-top: 10%;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f9f9f9;
+    
   }
   
   .auth-page h2 {
@@ -41,5 +42,12 @@
   
   .auth-page form button:hover {
     background-color: #555;
+    background-color: hsl(120, 17%, 50%);
   }
   
+  .link{
+    margin-top: 2vh;
+  }
+  .auth-page a:hover{
+    cursor: pointer;
+  }
