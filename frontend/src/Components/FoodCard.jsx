@@ -13,7 +13,7 @@ function FoodCard(food) {
         <h2 className="servings">{"Serves " + food.servings}</h2>
         <div className="price-quantity">
           <p className="price">{"Rs ." + food.price}</p>
-          {/* <Quantity/> */}
+          <Quantity/>
         </div>
       </div>
     </div>

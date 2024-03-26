@@ -23,7 +23,7 @@ function Navbar() {
     <nav className={`Navbar ${isScrolled ? 'scrolled' : 'default'}`}>
       <Navi title="Home" link="/"/>
       <SearchBar />
-      <Navi title="Admin" link="/admin"/>
+      {/* <Navi title="Admin" link="/admin"/> */}
       <Navi title="Cart" link="/cart"/>
       <Navi title="Login" link="/login"/>
       <Navi title="Account" link="/account" />
