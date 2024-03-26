@@ -6,6 +6,7 @@ import Account from "./Components/Account/Account";
 import Login from "./Components/Login/Login";
 import Register from "./Components/Login/Register";
 import Admin from "./Components/Admin.jsx";
+import CreateFood from "./Components/Admin/CreateFood";
 
 import "./App.css";
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path = "/login" element={<Login/>}/>
           <Route path = "/register" element={<Register/>}/>
           <Route path = "/admin" element={<Admin/>}/>
+          <Route path = "/createfood" element={<CreateFood/>}/>
         </Routes>
       </Router>
     </div>

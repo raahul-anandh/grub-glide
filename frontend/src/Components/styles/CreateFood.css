@@ -1,0 +1,48 @@
+.create-food-container {
+    border: 5px solid;
+    border-radius: 10px;
+    background-color: #f8f9fa; 
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    margin: 5vh auto; 
+    margin-top: 9%;
+    padding: 2vw;
+    max-width: 90vw; 
+}
+
+.create-food-container h2 {
+    color: #343a40; 
+    margin-bottom: 2vw; 
+}
+
+.create-food-container form {
+    display: grid;
+    gap: 1vw;
+}
+
+.create-food-container label {
+    font-weight: bold;
+}
+
+.create-food-container input[type='text'],
+.create-food-container input[type='number'],
+.create-food-container input[type='file'],
+.create-food-container textarea {
+    width: 100%;
+    padding: 1vw;
+    border-radius: 5px;
+    border: 1px solid #dee2e6; 
+}
+
+.create-food-container button[type='submit'] {
+    background-color: #343a40; 
+    color: #ffffff; 
+    padding: 1vw 2vw;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.create-food-container button[type='submit']:hover {
+    background-color: hsl(120, 17%, 50%); 
+}

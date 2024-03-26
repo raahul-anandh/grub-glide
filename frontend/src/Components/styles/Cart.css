@@ -18,14 +18,14 @@
   padding: 1vh 2vw;
   border-radius: 20px;
   font-weight: bold;
-  font-size: 2vw; /* Using vw for responsive font size */
+  font-size: 2vw; 
 }
 
 .item-table {
   width: 100%;
-  max-width: 90vw; /* Using vw for responsive maximum width */
+  max-width: 90vw; 
   border-collapse: collapse;
-  overflow-x: auto; /* Adding horizontal scroll for smaller screens */
+  overflow-x: auto; 
 }
 
 .item-table thead th {
@@ -33,13 +33,13 @@
   padding: 1vh 2vw;
   color: #ffffff;
   font-weight: bold;
-  font-size: 1.5vw; /* Using vw for responsive font size */
+  font-size: 1.5vw; 
 }
 
 .item-table tbody td {
   border: 1px solid #dee2e6;
-  padding: 1.5vw; /* Using vw for responsive padding */
-  font-size: 1.2vw;
+  padding: 1.5vw; 
+  font-size: 3vw;
 }
 
 .item-table tbody tr {
@@ -57,8 +57,8 @@
 }
 
 .cart-item img {
-  width: 10vw; /* Adjusting the width of the image */
-  height: auto; /* Keeping aspect ratio */
+  width: 10vw; 
+  height: auto; 
   border-radius: 10px;
 }
 
@@ -71,20 +71,20 @@
 }
 
 .cart-item input{
-  font-size: 1.3vw;
-  height: 4vw;
+  font-size: 1.5vw;
+  height: 3vw;
   width: 10vw;
 }
 
 .total {
   font-size: 2vw;
-  margin-top: 3vh;
+  margin-top: 1vh;
   color: #343a40;
   font-weight: bold;
 }
 
 .payment-method {
-  margin-top: 3vh;
+  margin-top: 2vh;
 }
 
 .payment-method label {
@@ -113,5 +113,54 @@
 }
 
 .payment-method button:hover {
-  background-color: #555;
+  background-color: hsl(120, 17%, 50%);
+}
+
+@media screen and (width < 450px){
+  .completion-time{
+    font-size: 3vw;
+  }
+  
+  .item-table thead th{
+    font-size: 3vw;
+  }
+  .item-table tbody td{
+    font-size: 3vw;
+  }
+
+  .cart-item img{
+    width: 20vw;
+    height: auto;
+  }
+  .cart-item h1{
+    font-size: 3vw;
+  }
+
+  .cart-item h2{
+    font-size: 2.5vw;
+  }
+
+  .cart-item input{
+    font-size: 3vw;
+    height: 5vw;
+    width: 15vw;
+  }
+  .total{
+    font-size: 4vw;
+  }
+  .payment-method{
+    margin-top: 0vh;
+  }
+  .payment-method label{
+    font-size: 3vw;
+  }
+  .payment-method input{
+    height: 3.5vw;
+    width: 3.5vw;
+  }
+  .payment-method button{
+    width: 100%;
+    font-size: 3vw;
+  }
+  
 }
