@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles/FoodCard.css";
-// import Quantity from "./Quantity.jsx";
+import Quantity from "./Quantity.jsx";
 function FoodCard(food) {
   
   return (
@@ -11,8 +11,8 @@ function FoodCard(food) {
       <div className="right">
         <h1 className="foodname">{food.foodName}</h1>
         <h2 className="servings">{"Serves " + food.servings}</h2>
-        <div>
-          <p>{"Rs ." + food.price}</p>
+        <div className="price-quantity">
+          <p className="price">{"Rs ." + food.price}</p>
           {/* <Quantity/> */}
         </div>
       </div>
