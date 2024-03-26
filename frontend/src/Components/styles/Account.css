@@ -4,7 +4,15 @@
   }
 
   .header{
+    color: hsl(120, 17%, 50%);
+    /* background-color: hsl(120, 17%, 50%);
+    color:#333;
     color: white;
+    width: fit-content;
+    border-radius: 20px;
+    padding: 1px 20px;
+    margin-bottom: 2%; */
+
   }
 
   .account-details{
@@ -32,7 +40,8 @@
   }
   
   .sidebar button:hover{
-    background-color: #8d8c8c;
+    /* background-color: #8d8c8c; */
+    background-color: hsl(120, 17%, 50%);
   }
   .sidebar button.active {
     background-color: #666;
@@ -74,6 +83,11 @@
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+  }
+  
+  .edit-profile form button:hover{
+    background-color: hsl(120, 17%, 50%);
+
   }
   
   .error{

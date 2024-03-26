@@ -1,6 +1,6 @@
 import React from "react";
 import { CreateCartItem } from "./CartItem.jsx";
-import chinese from '../../Database/Images/chinese.js';
+import cart from '../../Database/Images/cart.js';
 
 import "../styles/Cart.css";
 
@@ -18,7 +18,7 @@ function Cart(){
                     <th>Quantity</th>
                     </tr>
                 </thead>
-                <tbody>{chinese.map(CreateCartItem)}</tbody>   
+                <tbody>{cart.map(CreateCartItem)}</tbody>   
             </table>
             </div>
             <hr/>

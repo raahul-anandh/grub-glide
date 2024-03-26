@@ -7,13 +7,14 @@
   margin-top: 10vh; /* Using vh for responsive margin */
   max-width: 90vw; /* Using vw for responsive width */
   padding: 2vw; /* Using vw for responsive padding */
+  font-family: "Comfortaa", sans-serif;
 }
 
 .completion-time {
   margin: 2vh 0;
   text-align: center;
   color: #343a40;
-  background-color: #f8f9fa;
+  background-color: hsl(120, 17%, 50%);
   padding: 1vh 2vw;
   border-radius: 20px;
   font-weight: bold;
@@ -94,8 +95,8 @@
 .payment-method input{
   margin-right: 0.3vw;
   margin-left: 0.5vw;
-  height: 2.5vw;
-  width: 2.5vw;
+  height: 1.5vw;
+  width: 1.5vw;
 }
 .payment-method button {
   margin-right: 0.2vw;
