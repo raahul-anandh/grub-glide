@@ -1,18 +1,39 @@
 .cuisine {
-  /* display: flex;
-  flex-direction: row;*/
-  overflow: auto;
-  /*  */
+  overflow-x: scroll;
+  /* overflow-y: hidden; */
   display: flex;
   flex-direction: row;
+  height: auto;
+  padding-bottom: 6vh;
   gap: 20px;
+  /* -ms-overflow-style: none;   */
+  scrollbar-width: none;
+  /* height:max-content */
+  /* padding-bottom: 70px; */
 }
 
-.cuisine-container {
-  padding-top: 100px;
+.cuisine:-webkit-scrollbar {
+  /* display: none; */
 }
-.cuisine-container h1 {
-  /* color: black; */
-  margin-bottom: 0px;
-  padding-bottom: 0px;
+
+.cuisine *{
+    font-family: "Noto Sans", sans-serif;
+    /* font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+    font-variation-settings:
+    "wdth" 100; */
+}
+
+.all-cuisines {
+  padding-left:3%;
+  position:relative;
+  top:130px;
+}
+
+.cuisine-name {
+  font-size:2em;
+  font-family: "Comfortaa", sans-serif;
+  color: hsl(120, 17%, 50%);
+  padding-bottom: 3vh;
 }

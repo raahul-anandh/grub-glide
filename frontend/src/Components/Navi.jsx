@@ -3,8 +3,8 @@ import "./styles/Navi.css";
 
 function Navi(props) {
   return (
-    <div className="navi">
-      <a href="#">{props.title}</a>
+    <div className="navi-container">
+      <a className="navi" href={props.link}>{props.title}</a>
     </div>
   );
 }

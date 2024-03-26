@@ -2,11 +2,37 @@
   background-color: #1a1a1b;
   color: #fff;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 15px 0;
+  align-items : center;
+  padding:15px 7%;
   width: 100%;
   position: fixed;
-  top: 0px;
-  left: 0px;
+  margin:0px;
+  top:0;
+  left:0;
+  z-index:9999;
+  transition: background-color 0.4s ease-in-out;
+  height:11vh;
+
+}
+
+/* .Navbar a{
+  color:white;
+  transition: color 0.4s ease-in-out;
+} */
+
+/* .Navbar.scrolled a{
+  color: black;
+}
+
+.Navbar.scrolled {
+  background-color: #40513B;
+  opacity: 0.98;
+} */
+
+@media only screen and (max-width: 600px) {
+  .Navbar {
+    padding:4%;  
+    height:6vh;
+  }
 }

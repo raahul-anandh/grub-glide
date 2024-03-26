@@ -6,9 +6,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overscroll-behavior: none;
-  /* background-color: #222222; */
+  background-color: #FEF5ED;
   /* background-image: url('./assets/food-background2.png'); */
-  background-image: linear-gradient(135deg, #222222, #0a072b);
+  /* background-image: linear-gradient(135deg, #222222, #0a072b); */
   background-size: cover;
 }
 

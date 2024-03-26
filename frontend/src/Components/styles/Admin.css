@@ -1,0 +1,23 @@
+.all-admin-actions {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows:1fr 1fr 1fr;
+}
+
+.welcome-admin {
+    font-size:4vh;
+    font-family: "Comfortaa", sans-serif;
+    position: relative;
+    text-align: center;
+    padding-top: 8vh;
+    padding-bottom:10vh;
+    top:11vh;
+    color:hsl(120, 17%, 50%);
+}
+
+@media only screen and (max-width:700px) {
+    .welcome-admin {
+        font-size:2vh;
+    }
+}
+
