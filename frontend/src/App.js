@@ -5,6 +5,7 @@ import Cuisine from "./Components/Cuisine";
 import Account from "./Components/Account/Account";
 import Login from "./Components/Login/Login";
 import Register from "./Components/Login/Register";
+import Admin from "./Components/Admin";
 
 import "./App.css";
 function App() {
