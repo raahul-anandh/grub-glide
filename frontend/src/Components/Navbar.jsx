@@ -24,7 +24,7 @@ function Navbar() {
       <Navi title="Grubs" link="/"/>
       <SearchBar />
       <Navi title="Cart" link="/cart"/>
-      <Navi title="Account" link="/admin" />
+      <Navi title="Account" link="/account" />
     </nav>
   );
 }

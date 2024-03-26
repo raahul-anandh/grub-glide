@@ -22,6 +22,7 @@ function Cuisine() {
 
       <div className="cuisine-container">
         <h1 className="cuisine-name">Snacks</h1>
+        <div className="cuisine">{snacks.map(CreateFoodCard)}</div>
       </div>
 
     </div>
