@@ -1,5 +1,6 @@
 import React from "react";
 import { CreateFoodCard } from "./FoodCard.jsx";
+import ContactSection from "./Contact/Contact.jsx";
 import "./styles/Cuisine.css";
 import chinese from "../Database/Images/chinese";
 import snacks from "../Database/Images/snacks";
@@ -24,19 +25,7 @@ function Cuisine() {
         <div className="cuisine">{snacks.map(CreateFoodCard)}</div>
       </div>
     </section>
-      {/* Contact Section */}
-      <section className="contact-section">
-        <div className="contact-content">
-        <h2>Contact Us</h2>
-        <p>Have questions or feedback? Feel free to reach out!</p>
-        <form>
-          <input type="text" placeholder="Your Name" required />
-          <input type="email" placeholder="Your Email" required />
-          <textarea placeholder="Your Message" required></textarea>
-          <button type="submit">Send Message</button>
-        </form>
-        </div>
-      </section>
+    <ContactSection/>
     </div>
   );
 }

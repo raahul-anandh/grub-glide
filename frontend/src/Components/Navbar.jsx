@@ -21,7 +21,7 @@ function Navbar() {
 
   return (
     <nav className={`Navbar ${isScrolled ? 'scrolled' : 'default'}`}>
-      <Navi title="Home" link="/"/>
+      <Navi title="PlateForm" link="/"/>
       <SearchBar />
       {/* <Navi title="Admin" link="/admin"/> */}
       <Navi title="Cart" link="/cart"/>
