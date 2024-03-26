@@ -16,6 +16,8 @@
   text-decoration: none;  
   align-content: center;
   box-sizing: border-box;
+  padding-left: 2vh;
+  padding-right: 2vh;
 }
 
  .navi-container:hover {
@@ -30,6 +32,8 @@
  @media only screen and (max-width: 600px) {
   .navi {
     font-size:1em;
+    padding-left: 0px;
+    padding-right:0px;
   }
 
 }

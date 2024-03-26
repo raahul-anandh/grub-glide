@@ -20,7 +20,7 @@ const QuantityButton = ({ initialQuantity = 0, onQuantityChange }) => {
     <div className="quantity-button">
       <button onClick={decreaseQuantity}>-</button>
       <span className="quantity">{quantity}</span>
-      <button onClick={increaseQuantity}>+</button>
+      <button onClick={increaseQuantity}><i class="fa-solid fa-plus"></i></button>
     </div>
   );
 };

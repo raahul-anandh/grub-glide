@@ -14,7 +14,7 @@
 
 @media only screen and (max-width: 600px) {
   .searchbar input {
-    width: 9em;
-    height: 1em;
+    width: 13vh;
+    height:5vh;
   }
 }

@@ -2,3 +2,16 @@
     display:inline;
     padding-left:2em;
 }
+
+.quantity-button button{
+    background-color: #D3E4CD;
+    color:hsl(120, 17%, 50%);
+    border-radius: 10px;
+    border-color: rgb(106, 149, 106);
+    /* padding-left: 3px; */
+    
+}
+
+.quantity{
+    padding:5px;
+}
