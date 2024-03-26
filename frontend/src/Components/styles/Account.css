@@ -5,14 +5,6 @@
 
   .header{
     color: hsl(120, 17%, 50%);
-    /* background-color: hsl(120, 17%, 50%);
-    color:#333;
-    color: white;
-    width: fit-content;
-    border-radius: 20px;
-    padding: 1px 20px;
-    margin-bottom: 2%; */
-
   }
 
   .account-details{
@@ -20,7 +12,7 @@
   }
   
   .sidebar {
-    width: 200px;
+    width: 20%;
     background-color: #333;
     color: #fff;
     padding: 20px;
@@ -139,5 +131,12 @@
   
   .order-history ul li {
     margin-bottom: 5px;
+  }
+
+  @media screen and (width < 500px){
+    .account-page{
+      margin-top: 20%;
+      font-size: 2vw;
+    }
   }
   
