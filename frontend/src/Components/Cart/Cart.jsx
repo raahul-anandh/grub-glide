@@ -25,8 +25,8 @@ function Cart(){
             <p className="total">Total: 200</p>
             <div className="payment-method">
                 <label for="payment-method">Payment method: </label>
-                <input type="radio" name="payment-method" />Cash
-                <input type="radio" name="payment-method"/>UPI
+                <input type="radio" name="payment-method"/><label>Cash</label>
+                <input type="radio" name="payment-method"/><label>UPI</label>
                 <br/>
                 <button >Proceed</button>
             </div>

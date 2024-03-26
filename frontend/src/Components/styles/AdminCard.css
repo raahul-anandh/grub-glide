@@ -1,0 +1,34 @@
+.admin-card{
+    display:flex;
+    align-items: center;
+    padding:4vh;
+    border-radius: 50px;
+    background-color: #D3E4CD;
+    /* width:50%; */
+    margin: 7vh;
+    margin-top:10vh;
+    /* width:fit-content; */
+}
+
+.admin-card:hover{
+    color:hsl(120, 17%, 50%);
+    background-color: #1a1a1b;
+}
+
+.admin-card img{
+    height:18vh;
+    width:18vh;
+}
+
+.admin-card p{
+    padding-left: 3vh;
+    font-size: 3.2vh;
+    font-family: "Comfortaa", sans-serif;
+}
+
+@media only screen and (max-width: 700px){
+    .admin-card img {
+        height: 7vh;
+        width: 7vh;
+    }
+}

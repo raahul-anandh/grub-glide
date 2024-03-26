@@ -1,18 +1,35 @@
-.navi {
+.navi-container {
   display: inline;
   transition: color 0.3s ease;
-  padding: 15px;
+  /* text-align: center; */
+  /* align-items: center; */
+  align-content: center;
+  box-sizing: border-box;
+  height:8vh;
 }
 
-.navi a {
-  color: #fff;
+.navi {
+  color:hsl(120, 17%, 50%);
   font-family: "Red Hat Mono", monospace;
   font-optical-sizing: auto;
-  font-weight: 1.5rem;
-  text-decoration: none;
-  /* padding-top: 100%; */
+  font-size: 1.3em;
+  text-decoration: none;  
+  align-content: center;
+  box-sizing: border-box;
 }
 
-.navi:hover {
-  background-color: hwb(189 3% 42%);
+ .navi-container:hover {
+  background-color: #D3E4CD;
+  text-decoration: none;
+ }
+
+ .navi:hover {
+  text-decoration: none;
+ }
+
+ @media only screen and (max-width: 600px) {
+  .navi {
+    font-size:1em;
+  }
+
 }

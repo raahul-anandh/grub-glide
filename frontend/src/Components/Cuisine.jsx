@@ -8,10 +8,24 @@ import indian from "../Database/Images/indian";
 
 function Cuisine() {
   return (
-    <div className="cuisine-container">
-      <h1>Chinese</h1>
-      <div className="cuisine">{chinese.map(CreateFoodCard)}</div>
+    <div className="all-cuisines">
+
+      <div className="cuisine-container">
+        <h1 className="cuisine-name">Chinese</h1>
+        <div className="cuisine">{chinese.map(CreateFoodCard)}</div>
+      </div>
+
+      <div className="cuisine-container">
+        <h1 className="cuisine-name">Indian</h1>
+        <div className="cuisine">{indian.map(CreateFoodCard)}</div>
+      </div>
+
+      <div className="cuisine-container">
+        <h1 className="cuisine-name">Snacks</h1>
+      </div>
+
     </div>
+
   );
 }
 

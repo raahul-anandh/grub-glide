@@ -9,7 +9,7 @@ function CartItem(food){
             <h2 className="servings">{"Serves " + food.servings}</h2>
         </td>
         <td>
-          {food.price}
+          <h1>{food.price}</h1>
         </td>
         <td>
           <input type="number" placeholder="2"></input>

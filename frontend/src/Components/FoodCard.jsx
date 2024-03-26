@@ -2,6 +2,7 @@ import React from "react";
 import "./styles/FoodCard.css";
 // import Quantity from "./Quantity.jsx";
 function FoodCard(food) {
+  
   return (
     <div className="foodcard">
       <div className="left">

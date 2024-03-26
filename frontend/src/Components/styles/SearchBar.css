@@ -1,6 +1,6 @@
 .searchbar input {
   background-color: #333;
-  width: 200%;
+  width: 25em;
   padding: 8px 12px;
   border-radius: 20px; /* Adjust the value to change the roundness */
   border: 1px solid #ccc;
@@ -9,5 +9,12 @@
 }
 
 .searchbar input:focus {
-  border-color: hwb(189 3% 42%);
+  border-color: #6d965f;
+}
+
+@media only screen and (max-width: 600px) {
+  .searchbar input {
+    width: 9em;
+    height: 1em;
+  }
 }
