@@ -22,6 +22,7 @@
   
   .sidebar {
     width: 20%;
+    width: 20%;
     background-color: #333;
     color: #fff;
     padding: 20px;
@@ -141,6 +142,25 @@
   .order-history ul li {
     margin-bottom: 5px;
   }
+
+  
+  
+  @media screen and (width < 750px){
+    .account-page{
+      margin-top:10vh;
+    }
+
+    .header {
+      margin-top:17%;
+    }
+  }
+
+  @media screen and (750px < width < 1250px){
+    .header{
+      margin-top:14%;
+    }
+  }
+
   
   @media screen and (width < 750px){
     .account-page{
