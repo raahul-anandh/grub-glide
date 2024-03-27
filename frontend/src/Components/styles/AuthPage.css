@@ -51,3 +51,9 @@
   .auth-page a:hover{
     cursor: pointer;
   }
+
+  @media screen and (width < 750px){
+    .auth-page{
+      margin-top: 20vh;
+    }
+  }
