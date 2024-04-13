@@ -7,7 +7,9 @@
     /* width:50%; */
     margin: 7vh;
     margin-top:10vh;
-    /* width:fit-content; */
+    margin-left:13vh;
+
+    width:80vh;
 }
 
 .admin-card:hover{
@@ -16,8 +18,9 @@
 }
 
 .admin-card img{
-    height:18vh;
-    width:18vh;
+    height:14vh;
+    width:14vh;
+    border-radius:30px;
 }
 
 .admin-card p{
