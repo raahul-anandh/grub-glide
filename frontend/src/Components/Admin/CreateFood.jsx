@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import "../styles/CreateFood.css";
 function CreateFood() {
@@ -12,6 +12,7 @@ function CreateFood() {
     });
     const [errors, setErrors] = useState({});
 
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
@@ -19,13 +20,15 @@ function CreateFood() {
     };
 
     const handleImageChange = (e) => {
+        console.log("Image selected:", e.target.files[0]);
         const imageFile = e.target.files[0];
         setFormData({ ...formData, image: imageFile });
+        console.log("FormData after updating image:", formData);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
+        console.log("FormData before submission:", formData);
         const validationErrors = {};
 
         if (formData.foodName.trim() === '') {
@@ -54,13 +57,46 @@ function CreateFood() {
             return;
         }
 
-        // Form is valid, handle submission (e.g., send data to backend)
+        try {
+            const formDataToSend = new FormData();
+            formDataToSend.append('foodName', formData.foodName);
+            formDataToSend.append('description', formData.description);
+            formDataToSend.append('price', formData.price);
+            formDataToSend.append('serves', formData.serves);
+            formDataToSend.append('stockAvailable', formData.stockAvailable);
+            formDataToSend.append('image', formData.image);
+    
+            console.log(formDataToSend); // Log formDataToSend for debugging
+    
+            const response = await fetch('http://localhost:4000/plateform/create-food', {
+                method: 'POST',
+                body: formDataToSend,
+            });
+    
+            if (response.ok) {
+                alert('Food item created successfully');
+                // Optionally, reset the form after successful submission
+                setFormData({
+                    foodName: '',
+                    description: '',
+                    price: '',
+                    serves: '',
+                    stockAvailable: '',
+                    image: null,
+                });
+            } else {
+                throw new Error('Failed to create food item');
+            }
+        } catch (error) {
+            console.error(error);
+            alert('Error creating food item');
+        }
     };
 
     return (
         <div className="create-food-container">
             <h2>Create Food</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div>
                     <label>Food Name:</label>
                     <input
