@@ -37,7 +37,7 @@ function FoodForm(props) {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        if (name == "category")
+        if (name === "category")
             setCategory(value)
         setFormData({ ...formData, [name]: value });
         setErrors({ ...errors, [name]: undefined });
