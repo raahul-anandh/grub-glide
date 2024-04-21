@@ -48,6 +48,19 @@ plateformRoute.get("/food-list", async(req, res) => {
     }
 })
 
+// Get food details by ID
+plateformRoute.get("/food-details/:id", async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const food = await foodSchema.findById(id);
+        res.json({ status: "ok", data: food });
+    } catch (error) {
+        res.status(500).json({ status: "error", message: error.message });
+    }
+});
+
+
 // Update food
 plateformRoute.put("/update-food/:id", upload.single("image"), async (req, res) => {
     const { id } = req.params;
