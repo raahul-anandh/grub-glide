@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 
 import "../styles/FoodForm.css";
 import axios from 'axios';
 
 function FoodForm(props) {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         foodName: props.foodName,
         category: props.category,
@@ -95,6 +97,8 @@ function FoodForm(props) {
                 headers: { "Content-Type": "multipart/form"}
             }
             )
+            alert("Food Item Created Successfully");
+            navigate("/")
         }
         else if (props.action === "update") {
             // Update request
@@ -103,6 +107,8 @@ function FoodForm(props) {
                 formDataToSend,
                 { headers: { "Content-Type": "multipart/form-data" } }
             );
+            alert("Food Item Updated");
+            navigate("/")
         }
     };
 

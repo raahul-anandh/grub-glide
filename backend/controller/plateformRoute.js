@@ -10,8 +10,8 @@ const storage = multer.diskStorage({
       cb(null, "../frontend/src/FoodImages")
     },
     filename: function (req, file, cb) {
-      const uniqueSuffix = Date.now()
-      cb(null, uniqueSuffix + file.originalname) 
+    //   const uniqueSuffix = Date.now()
+      cb(null, file.originalname) 
     }
   })
   
