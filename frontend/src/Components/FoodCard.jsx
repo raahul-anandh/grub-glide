@@ -1,7 +1,9 @@
 import React from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 import "./styles/FoodCard.css";
 import Quantity from "./Quantity.jsx";
-import { useNavigate } from "react-router-dom";
 
 function FoodCard(food) {
   const navigate = useNavigate();
@@ -11,6 +13,18 @@ function FoodCard(food) {
     localStorage.setItem("foodID", food.id);
     navigate("/updatefood");
   }
+
+  const deleteFood = async () => {
+    try{
+      await axios.delete(`http://localhost:4000/plateform/delete-food/${food.id}`);
+      alert("Food Item Deleted Successfully");
+      navigate("/");
+    }
+    catch (error) {
+      console.error("Error deleting food item:", error);
+    }
+  }
+  
   return (
     <div className="foodcard">
       <div className="left">
@@ -26,6 +40,7 @@ function FoodCard(food) {
             ? <div>
               <p>{"Stock " + food.stockAvailable}</p><br/>
               <button onClick={updateFood}>Update</button>
+              <button onClick={deleteFood}>Delete</button>
             
             
             </div>

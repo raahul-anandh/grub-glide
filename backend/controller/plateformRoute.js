@@ -89,6 +89,25 @@ plateformRoute.put("/update-food/:id", upload.single("image"), async (req, res) 
     }
 });
 
+// Delete food
+plateformRoute.delete("/delete-food/:id", async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        // Find the food item by ID and delete it
+        const deletedFood = await foodSchema.findByIdAndDelete(id);
+        if (!deletedFood) {
+            // If the food item with the provided ID is not found, return a 404 status code
+            return res.status(404).json({ status: "error", message: "Food item not found" });
+        }
+        res.json({ status: "ok", message: "Food item deleted successfully" });
+    } catch (error) {
+        // If an error occurs during the deletion process, return a 500 status code with the error message
+        console.error("Error deleting food item:", error);
+        res.status(500).json({ status: "error", message: "Internal server error" });
+    }
+})
+
 
 // --------------------------------------------------------------
 // User
