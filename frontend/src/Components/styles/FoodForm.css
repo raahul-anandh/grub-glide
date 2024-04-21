@@ -1,4 +1,4 @@
-.create-food-container {
+.food-form {
     border: 5px solid;
     border-radius: 10px;
     background-color: #f8f9fa; 
@@ -9,34 +9,34 @@
     max-width: 90vw; 
 }
 
-.create-food-container h2 {
+.food-form h2 {
     color: #343a40; 
     margin-bottom: 2vw; 
 }
 
-.create-food-container form {
+.food-form form {
     display: grid;
     gap: 1vw;
 }
 
-.create-food-container label {
+.food-form label {
     font-weight: bold;
 }
 
-.create-food-container input[type='text'],
-.create-food-container input[type='number'],
-.create-food-container input[type='file'],
-.create-food-container textarea {
+.food-form input[type='text'],
+.food-form input[type='number'],
+.food-form input[type='file'],
+.food-form textarea {
     width: 100%;
     padding: 1vw;
     border-radius: 5px;
     border: 1px solid #dee2e6; 
 }
 
-.create-food-container select{
+.food-form select{
     margin-left: 5px;
 }
-.create-food-container button[type='submit'] {
+.food-form button[type='submit'] {
     background-color: #343a40; 
     color: #ffffff; 
     padding: 1vw 2vw;
@@ -46,6 +46,6 @@
     transition: background-color 0.3s ease;
 }
 
-.create-food-container button[type='submit']:hover {
+.food-form button[type='submit']:hover {
     background-color: hsl(120, 17%, 50%); 
 }
