@@ -75,6 +75,9 @@ function FoodForm(props) {
             validationErrors.stockAvailable = 'Stock available must be a valid number';
         }
 
+        if (!formData.image) {
+            validationErrors.image = 'Image is required';
+        }
         
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);

@@ -65,9 +65,13 @@ plateformRoute.get("/food-details/:id", async (req, res) => {
 plateformRoute.put("/update-food/:id", upload.single("image"), async (req, res) => {
     const { id } = req.params;
     const { foodName, category, price, serves, stockAvailable } = req.body;
-    const imageName = req.file.filename;
+    // const imageName = req.file.filename;
 
     try {
+        let imageName;
+        if (req.file) {
+            imageName = req.file.filename;
+        }
         await foodSchema.findByIdAndUpdate(
             id,
             {
