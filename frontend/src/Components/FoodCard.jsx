@@ -1,7 +1,16 @@
 import React from "react";
 import "./styles/FoodCard.css";
 import Quantity from "./Quantity.jsx";
+import { useNavigate } from "react-router-dom";
+
 function FoodCard(food) {
+  const navigate = useNavigate();
+  const user = localStorage.getItem("user");
+
+  const updateFood = () => {
+    localStorage.setItem("foodID", food.id);
+    navigate("/updatefood");
+  }
   return (
     <div className="foodcard">
       <div className="left">
@@ -12,7 +21,11 @@ function FoodCard(food) {
         <h2 className="servings">{"Serves " + food.servings}</h2>
         <div className="price-quantity">
           <p className="price">{"Rs ." + food.price}</p>
-          <Quantity/>
+          {
+            user === "admin"
+            ? <button onClick={updateFood}>Update</button>
+            : <Quantity/>
+          }
         </div>
       </div>
     </div>
@@ -22,7 +35,7 @@ function FoodCard(food) {
 function CreateFoodCard(food) {
   return (
     <FoodCard
-      key={food._id}
+      id={food._id}
       foodName={food.foodName}
       image={food.image}
       servings={food.serves}

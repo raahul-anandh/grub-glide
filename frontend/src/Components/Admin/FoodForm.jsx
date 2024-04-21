@@ -87,7 +87,7 @@ function FoodForm(props) {
             formDataToSend.append('stockAvailable', formData.stockAvailable);
             formDataToSend.append('image', formData.image);
 
-        if(props.action == "create"){
+        if(props.action === "create"){
             const result = await axios.post(
             "http://localhost:4000/plateform/create-food",
             formDataToSend,
@@ -95,6 +95,14 @@ function FoodForm(props) {
                 headers: { "Content-Type": "multipart/form"}
             }
             )
+        }
+        else if (props.action === "update") {
+            // Update request
+            await axios.put(
+                `http://localhost:4000/plateform/update-food/${props.foodID}`, 
+                formDataToSend,
+                { headers: { "Content-Type": "multipart/form-data" } }
+            );
         }
     };
 

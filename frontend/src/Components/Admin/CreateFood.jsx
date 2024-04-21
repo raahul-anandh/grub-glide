@@ -4,6 +4,7 @@ import FoodForm from "./FoodForm";
 function CreateFood(){
     return(
         <FoodForm 
+        foodID = ""
         foodName = ""
         category = ""
         price = ""

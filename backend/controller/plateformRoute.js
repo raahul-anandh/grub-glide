@@ -47,6 +47,32 @@ plateformRoute.get("/food-list", async(req, res) => {
         res.json({ status: error });
     }
 })
+
+// Update food
+plateformRoute.put("/update-food/:id", upload.single("image"), async (req, res) => {
+    const { id } = req.params;
+    const { foodName, category, price, serves, stockAvailable } = req.body;
+    const imageName = req.file.filename;
+
+    try {
+        await foodSchema.findByIdAndUpdate(
+            id,
+            {
+                foodName,
+                category,
+                price,
+                serves,
+                stockAvailable,
+                image: imageName
+            }
+        );
+        res.json({ status: "ok" });
+    } catch (error) {
+        res.status(500).json({ status: "error", message: error.message });
+    }
+});
+
+
 // --------------------------------------------------------------
 // User
 plateformRoute.get("/user-list", (req, res) => {
