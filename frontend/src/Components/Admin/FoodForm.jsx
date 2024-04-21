@@ -108,7 +108,7 @@ function FoodForm(props) {
 
     return (
         <div className="food-form">
-            <h2>Create Food</h2>
+            <h2>{props.header}</h2>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div>
                     <label>Food Name:</label>
@@ -180,7 +180,7 @@ function FoodForm(props) {
                     />
                     {errors.image && <span className="error-message">{errors.image}</span>}
                 </div>
-                <button type="submit">Create Food</button>
+                <button type="submit">{props.header}</button>
             </form>
         </div>
     );

@@ -12,6 +12,7 @@ function CreateFood(){
         stockAvailable = ""
         image = ""
         action = "create"
+        header = "Create Food"
         ></FoodForm>
     )
 }

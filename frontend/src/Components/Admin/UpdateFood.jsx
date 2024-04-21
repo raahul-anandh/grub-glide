@@ -37,6 +37,7 @@ function UpdateFood(){
         stockAvailable = {formData.stockAvailable}
         image = {formData.image}
         action = "update"
+        header = "Update Food"
         ></FoodForm>
     </div>)
 
