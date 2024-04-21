@@ -115,7 +115,7 @@ function CreateFood() {
                 <div>
                     <label>Serves:</label>
                     <input
-                        type="text"
+                        type="number"
                         name="serves"
                         value={formData.serves}
                         onChange={handleChange}

@@ -2,11 +2,10 @@ import React from "react";
 import "./styles/FoodCard.css";
 import Quantity from "./Quantity.jsx";
 function FoodCard(food) {
-  
   return (
     <div className="foodcard">
       <div className="left">
-        <img src={food.imgURL} alt={food.foodName} />
+        <img src={require(`../FoodImages/${food.image}`) } alt={food.foodName} />
       </div>
       <div className="right">
         <h1 className="foodname">{food.foodName}</h1>
@@ -23,10 +22,10 @@ function FoodCard(food) {
 function CreateFoodCard(food) {
   return (
     <FoodCard
-      key={food.id}
+      key={food._id}
       foodName={food.foodName}
-      imgURL={food.imageURL}
-      servings={food.servings}
+      image={food.image}
+      servings={food.serves}
       price={food.price}
     />
   );

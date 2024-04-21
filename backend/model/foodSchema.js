@@ -13,7 +13,7 @@ const foodSchema = new mongoose.Schema({
         required: true
     },
     serves: {
-        type: String,
+        type: Number,
         required: true
     },
     stockAvailable: {

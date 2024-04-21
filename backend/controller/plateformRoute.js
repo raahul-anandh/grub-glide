@@ -7,7 +7,7 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, 'uploads/')
+      cb(null, "../frontend/src/FoodImages")
     },
     filename: function (req, file, cb) {
       const uniqueSuffix = Date.now()
@@ -33,10 +33,20 @@ plateformRoute.post("/create-food", upload.single("image"), async (req, res) => 
         })
         res.json({ status: "ok" });
     }catch(error){
-        res.json({ status: error });
+        res.json({ status: error.response.data });
     }
 })
 
+plateformRoute.get("/food-list", async(req, res) => {
+    try{
+        foodSchema.find({}).then(data => {
+            res.send({status: "ok", data: data})
+        })
+    }
+    catch(error){
+        res.json({ status: error });
+    }
+})
 // --------------------------------------------------------------
 // User
 plateformRoute.get("/user-list", (req, res) => {
