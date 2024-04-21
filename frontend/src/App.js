@@ -13,7 +13,8 @@ import UpdateFood from "./Components/Admin/UpdateFood.jsx";
 
 import "./App.css";
 function App() {
-  localStorage.setItem("user", "admin");
+  // localStorage.setItem("user", "admin");
+  localStorage.setItem("user", "abc");
   
   return (
     <div className="mainRoot">

@@ -41,8 +41,6 @@ function FoodCard(food) {
               <p>{"Stock " + food.stockAvailable}</p><br/>
               <button onClick={updateFood}>Update</button>
               <button onClick={deleteFood}>Delete</button>
-            
-            
             </div>
             : <Quantity/>
           }
