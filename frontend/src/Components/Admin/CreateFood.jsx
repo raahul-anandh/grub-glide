@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 import "../styles/CreateFood.css";
+import axios from 'axios';
+
 function CreateFood() {
     const [formData, setFormData] = useState({
         foodName: '',
@@ -23,7 +25,7 @@ function CreateFood() {
         console.log("Image selected:", e.target.files[0]);
         const imageFile = e.target.files[0];
         setFormData({ ...formData, image: imageFile });
-        console.log("FormData after updating image:", formData);
+        // console.log("FormData after updating image:", formData);
     };
 
     const handleSubmit = async (e) => {
@@ -57,40 +59,21 @@ function CreateFood() {
             return;
         }
 
-        try {
-            const formDataToSend = new FormData();
+        const formDataToSend = new FormData();
             formDataToSend.append('foodName', formData.foodName);
             formDataToSend.append('description', formData.description);
             formDataToSend.append('price', formData.price);
             formDataToSend.append('serves', formData.serves);
             formDataToSend.append('stockAvailable', formData.stockAvailable);
             formDataToSend.append('image', formData.image);
-    
-            console.log(formDataToSend); // Log formDataToSend for debugging
-    
-            const response = await fetch('http://localhost:4000/plateform/create-food', {
-                method: 'POST',
-                body: formDataToSend,
-            });
-    
-            if (response.ok) {
-                alert('Food item created successfully');
-                // Optionally, reset the form after successful submission
-                setFormData({
-                    foodName: '',
-                    description: '',
-                    price: '',
-                    serves: '',
-                    stockAvailable: '',
-                    image: null,
-                });
-            } else {
-                throw new Error('Failed to create food item');
+
+        const result = await axios.post(
+            "http://localhost:4000/plateform/create-food",
+            formDataToSend,
+            {
+                headers: { "Content-Type": "multipart/form"}
             }
-        } catch (error) {
-            console.error(error);
-            alert('Error creating food item');
-        }
+        )
     };
 
     return (
