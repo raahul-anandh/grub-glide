@@ -33,6 +33,9 @@
     border: 1px solid #dee2e6; 
 }
 
+.create-food-container select{
+    margin-left: 5px;
+}
 .create-food-container button[type='submit'] {
     background-color: #343a40; 
     color: #ffffff; 

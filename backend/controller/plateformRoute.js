@@ -25,7 +25,7 @@ plateformRoute.post("/create-food", upload.single("image"), async (req, res) => 
     try{
         await foodSchema.create({
             foodName: req.body.foodName,
-            description: req.body.description,
+            category: req.body.category,
             price: req.body.price,
             serves: req.body.serves,
             stockAvailable: req.body.stockAvailable,

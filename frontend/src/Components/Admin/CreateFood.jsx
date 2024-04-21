@@ -6,17 +6,25 @@ import axios from 'axios';
 function CreateFood() {
     const [formData, setFormData] = useState({
         foodName: '',
-        description: '',
+        category: '',
         price: '',
         serves: '',
         stockAvailable: '',
         image: null,
     });
     const [errors, setErrors] = useState({});
-
+    const categories = [
+        {value: "", text: "--Select a category--"},
+        {value: "chinese", text: "Chinese"},
+        {value: "indian", text: "Indian"},
+        {value: "snacks", text: "Snacks"},
+    ]
+    const [category, setCategory] = useState(categories[0].value);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+        if (name == "category")
+            setCategory(value)
         setFormData({ ...formData, [name]: value });
         setErrors({ ...errors, [name]: undefined });
     };
@@ -37,8 +45,8 @@ function CreateFood() {
             validationErrors.foodName = 'Food name is required';
         }
 
-        if (formData.description.trim() === '') {
-            validationErrors.description = 'Description is required';
+        if (formData.category.trim() === '') {
+            validationErrors.category = 'Category is required';
         }
 
         if (formData.price.trim() === '' || isNaN(formData.price)) {
@@ -61,7 +69,7 @@ function CreateFood() {
 
         const formDataToSend = new FormData();
             formDataToSend.append('foodName', formData.foodName);
-            formDataToSend.append('description', formData.description);
+            formDataToSend.append('category', formData.category);
             formDataToSend.append('price', formData.price);
             formDataToSend.append('serves', formData.serves);
             formDataToSend.append('stockAvailable', formData.stockAvailable);
@@ -92,14 +100,19 @@ function CreateFood() {
                     {errors.foodName && <span className="error-message">{errors.foodName}</span>}
                 </div>
                 <div>
-                    <label>Description:</label>
-                    <textarea
-                        name="description"
-                        value={formData.description}
+                    <label>Category:</label>
+                    <select name="category"
+                        value={category}
                         onChange={handleChange}
-                        required
-                    />
-                    {errors.description && <span className="error-message">{errors.description}</span>}
+                        required>
+                    {categories.map(category => (
+                        <option key = {category.value} value= {category.value}>
+                            {category.text}
+                        </option>
+                    ))}
+                    
+                    </select>
+                    {errors.category && <span className="error-message">{errors.category}</span>}
                 </div>
                 <div>
                     <label>Price:</label>
