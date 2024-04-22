@@ -20,6 +20,10 @@ const foodSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    prepTime: {
+        type: Number,
+        required: true
+    },
     image: {
         type: String,
     },

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./styles/Quantity.css"
 
-const QuantityButton = ({ initialQuantity = 0, onQuantityChange }) => {
+const QuantityButton = ({ initialQuantity = 0, stockAvailable, onQuantityChange }) => {
   const [quantity, setQuantity] = useState(initialQuantity);
 
   const decreaseQuantity = () => {
@@ -12,8 +12,12 @@ const QuantityButton = ({ initialQuantity = 0, onQuantityChange }) => {
   };
 
   const increaseQuantity = () => {
-    setQuantity(quantity + 1);
-    onQuantityChange?.(quantity + 1);
+    if (quantity < stockAvailable) {
+      setQuantity(quantity + 1);
+      onQuantityChange?.(quantity + 1);
+    } else {
+      alert("Cannot add more than available stock");
+    }
   };
 
   return (

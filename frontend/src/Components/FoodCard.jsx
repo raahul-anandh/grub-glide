@@ -30,13 +30,24 @@ function FoodCard(food) {
     }
   };
 
-  const handleQuantityChange = (newQuantity) => {
-    const cart = JSON.parse(localStorage.getItem("cart")) || {};
-    cart[food.id] = newQuantity;
-    localStorage.setItem("cart", JSON.stringify(cart));
-    setQuantity(newQuantity);
-    console.log(localStorage.getItem("cart"));
+  const handleQuantityChange = async (newQuantity) => {
+    try {
+      const response = await axios.get(`http://localhost:4000/plateform/food-details/${food.id}`);
+      const { stockAvailable } = response.data.data;
+      
+      if (newQuantity <= stockAvailable) {
+        const cart = JSON.parse(localStorage.getItem("cart")) || {};
+        cart[food.id] = newQuantity;
+        localStorage.setItem("cart", JSON.stringify(cart));
+        setQuantity(newQuantity);
+      } else {
+        alert("Cannot add more than available stock");
+      }
+    } catch (error) {
+      console.error("Error fetching food details:", error);
+    }
   };
+  console.log(localStorage.getItem("cart"));
 
   return (
     <div className="foodcard">
@@ -50,13 +61,19 @@ function FoodCard(food) {
           <p className="price">{"Rs ." + food.price}</p>
           {user === "admin" ? (
             <div>
-              <p>{"Stock " + food.stockAvailable}</p>
+              <p>{"Stock: " + food.stockAvailable}</p>
+              <br />
+              <p>{"Preparation Time: " + food.prepTime}</p>
               <br />
               <button onClick={updateFood}>Update</button>
               <button onClick={deleteFood}>Delete</button>
             </div>
           ) : (
-            <QuantityButton initialQuantity={quantity} onQuantityChange={handleQuantityChange} />
+            <QuantityButton
+              initialQuantity={quantity}
+              stockAvailable={food.stockAvailable}
+              onQuantityChange={handleQuantityChange}
+            />
           )}
         </div>
       </div>
@@ -72,7 +89,8 @@ function CreateFoodCard(food) {
       image={food.image}
       servings={food.serves}
       price={food.price}
-      stockAvailable = {food.stockAvailable}
+      stockAvailable={food.stockAvailable}
+      prepTime = {food.prepTime}
     />
   );
 }

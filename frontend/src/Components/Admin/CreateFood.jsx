@@ -10,6 +10,7 @@ function CreateFood(){
         price = ""
         serves = ""
         stockAvailable = ""
+        prepTime = ""
         image = ""
         action = "create"
         header = "Create Food"

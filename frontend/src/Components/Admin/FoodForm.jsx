@@ -12,6 +12,7 @@ function FoodForm(props) {
         price: props.price,
         serves: props.serves,
         stockAvailable: props.stockAvailable,
+        prepTime: props.prepTime,
         image: props.image,
     });
     const [errors, setErrors] = useState({});
@@ -23,9 +24,10 @@ function FoodForm(props) {
             price: `${props.price}`,
             serves: `${props.serves}`,
             stockAvailable: `${props.stockAvailable}`,
+            prepTime: `${props.prepTime}`,
             image: `${props.image}`,
         })
-    }, [props.foodName, props.category, props.price, props.serves, props.stockAvailable, props.image])
+    }, [props.foodName, props.category, props.price, props.serves, props.stockAvailable, props.prepTime, props.image])
     
     const categories = [
         {value: "", text: "--Select a category--"},
@@ -75,6 +77,10 @@ function FoodForm(props) {
             validationErrors.stockAvailable = 'Stock available must be a valid number';
         }
 
+        if (formData.prepTime.trim() === '' || isNaN(formData.prepTime)) {
+            validationErrors.prepTime = 'Preparation Time must be a valid number';
+        }
+
         if (!formData.image) {
             validationErrors.image = 'Image is required';
         }
@@ -90,6 +96,7 @@ function FoodForm(props) {
             formDataToSend.append('price', formData.price);
             formDataToSend.append('serves', formData.serves);
             formDataToSend.append('stockAvailable', formData.stockAvailable);
+            formDataToSend.append('prepTime', formData.prepTime);
             formDataToSend.append('image', formData.image);
 
         if(props.action === "create"){
@@ -177,6 +184,17 @@ function FoodForm(props) {
                         required
                     />
                     {errors.stockAvailable && <span className="error-message">{errors.stockAvailable}</span>}
+                </div>
+                <div>
+                    <label>Preparation Time:</label>
+                    <input
+                        type="number"
+                        name="prepTime"
+                        value={formData.prepTime}
+                        onChange={handleChange}
+                        required
+                    />
+                    {errors.prepTime && <span className="error-message">{errors.prepTime}</span>}
                 </div>
                 <div>
                     <label>Upload Image:</label>

@@ -7,7 +7,8 @@ import "../styles/Cart.css";
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0);
-  const [localCart, setLocalCart] = useState([])
+  const [completionTime, setCompletionTime] = useState(0);
+  const [localCart, setLocalCart] = useState([]);
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -29,6 +30,14 @@ function Cart() {
           return acc + price * quantity;
         }, 0);
         setTotal(total);
+
+        // Calculate completion time
+        const completionTime = fetchedCartItems.reduce((acc, curr) => {
+          const prepTime = parseFloat(curr.prepTime);
+          const quantity = parseFloat(cart[curr._id]);
+          return acc + prepTime * quantity;
+        }, 0);
+        setCompletionTime(completionTime);
       } catch (error) {
         console.error("Error fetching cart items:", error);
       }
@@ -37,9 +46,6 @@ function Cart() {
     fetchCartItems();
   }, []);
 
-  console.log(cartItems);
-  console.log(total);
-
   const handleSubmitCart = () => {
     // Implement submission of cart data to the backend for database update
     console.log("Submitting cart data to the backend:", cartItems);
@@ -47,7 +53,7 @@ function Cart() {
 
   return (
     <div className="cart-content">
-      <p className="completion-time">Your order will be ready in 20 minutes!</p>
+      <p className="completion-time">Your order will be ready in {completionTime} minutes!</p>
       <div>
         <table className="item-table">
           <thead>
@@ -60,8 +66,6 @@ function Cart() {
           </thead>
           <tbody>
             {cartItems.map((food) => (
-                // console.log("Hello", localCart[food._id])
-                // console.log(localStorage.getItem("cart"))
               <CartItem key={food._id} 
               foodName={food.foodName} 
               image = {food.image}

@@ -29,6 +29,7 @@ plateformRoute.post("/create-food", upload.single("image"), async (req, res) => 
             price: req.body.price,
             serves: req.body.serves,
             stockAvailable: req.body.stockAvailable,
+            prepTime: req.body.prepTime,
             image: imageName,
         })
         res.json({ status: "ok" });
@@ -64,7 +65,7 @@ plateformRoute.get("/food-details/:id", async (req, res) => {
 // Update food
 plateformRoute.put("/update-food/:id", upload.single("image"), async (req, res) => {
     const { id } = req.params;
-    const { foodName, category, price, serves, stockAvailable } = req.body;
+    const { foodName, category, price, serves, stockAvailable, prepTime } = req.body;
     // const imageName = req.file.filename;
 
     try {
@@ -80,6 +81,7 @@ plateformRoute.put("/update-food/:id", upload.single("image"), async (req, res) 
                 price,
                 serves,
                 stockAvailable,
+                prepTime,
                 image: imageName
             }
         );
