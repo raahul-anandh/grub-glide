@@ -61,7 +61,9 @@ function FoodCard(food) {
           <p className="price">{"Rs ." + food.price}</p>
           {user === "admin" ? (
             <div>
-              <p>{"Stock " + food.stockAvailable}</p>
+              <p>{"Stock: " + food.stockAvailable}</p>
+              <br />
+              <p>{"Preparation Time: " + food.prepTime}</p>
               <br />
               <button onClick={updateFood}>Update</button>
               <button onClick={deleteFood}>Delete</button>
@@ -88,6 +90,7 @@ function CreateFoodCard(food) {
       servings={food.serves}
       price={food.price}
       stockAvailable={food.stockAvailable}
+      prepTime = {food.prepTime}
     />
   );
 }

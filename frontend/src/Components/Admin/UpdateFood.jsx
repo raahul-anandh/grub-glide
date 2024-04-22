@@ -10,6 +10,7 @@ function UpdateFood(){
         price: '',
         serves: '',
         stockAvailable: '',
+        prepTime: '',
         image: '',
     });
 
@@ -35,6 +36,7 @@ function UpdateFood(){
         price = {formData.price}
         serves = {formData.serves}
         stockAvailable = {formData.stockAvailable}
+        prepTime = {formData.prepTime}
         image = {formData.image}
         action = "update"
         header = "Update Food"
