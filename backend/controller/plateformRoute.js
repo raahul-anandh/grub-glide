@@ -120,4 +120,24 @@ plateformRoute.get("/user-list", (req, res) => {
     })
 })
 
+plateformRoute.post("/create-user", upload.none(), async (req,res)=> {
+    
+    console.log(req.body);
+    try{
+        await userSchema.create({
+            name: req.body.name,
+            email: req.body.email,
+            phone: req.body.phone,
+            password: req.body.password,
+            // orders:{},
+        })
+        res.json({ status: "ok" });
+    }catch(error){
+        res.json({ status: error.response });
+    }
+
+})
+
+
+
 module.exports = plateformRoute;

@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function DetailsForm(props) {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: props.name,
     email: props.email,
@@ -35,7 +38,7 @@ function DetailsForm(props) {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const validationErrors = {};
@@ -65,8 +68,50 @@ function DetailsForm(props) {
       return;
     }
 
+    console.log(formData);
+    const formDataToSend = new FormData();
+        formDataToSend.append('name',  formData.name);
+        formDataToSend.append('email', formData.email);
+        formDataToSend.append('phone', formData.phone);
+        formDataToSend.append('password', formData.password);
+
+    try{
+      const response= await axios.post("http://localhost:4000/plateform/create-user",formDataToSend, {
+        headers:{
+          'Content-Type':'multipart/form-data',
+        },
+      });
+      console.log(response);
+      console.log('Form submitted:', formData);
+      navigate("/")
+    }
+    catch{
+      alert("Could not create user");
+    }
+
+  //   if(props.action === "create"){
+  //     const result = await axios.post(
+  //     "http://localhost:4000/plateform/create-user",
+  //     formDataToSend,
+  //     {
+  //         headers: { "Content-Type": "multipart/form"}
+  //     }
+  //     )
+  //     alert("Food Item Created Successfully");
+  //     navigate("/")
+  // }
+  // else if (props.action === "update") {
+  //     // Update request
+  //     await axios.put(
+  //         `http://localhost:4000/plateform/update-food/${props.foodID}`, 
+  //         formDataToSend,
+  //         { headers: { "Content-Type": "multipart/form-data" } }
+  //     );
+  //     alert("Food Item Updated");
+  //     navigate("/")
+  // }
+  // };
     // If validation passes, proceed with form submission
-    console.log('Form submitted:', formData);
   };
 
   return (
