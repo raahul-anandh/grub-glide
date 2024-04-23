@@ -17,7 +17,7 @@ function FoodCard(food) {
 
   const updateFood = () => {
     localStorage.setItem("foodID", food.id);
-    navigate("/updatefood");
+    navigate("/admin/updatefood");
   };
 
   const deleteFood = async () => {
