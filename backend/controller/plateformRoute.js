@@ -160,10 +160,10 @@ plateformRoute.post("/create-user", upload.none(), async (req,res)=> {
         })
         const token=createToken(user._id);
 
-        res.cookie('JWT1',token,{domain: '.localhost',path:"/",sameSite:'None', maxAge: maxAge*1000,secure:true})
-        res.json({ user: used._id});
-        console.log("HI");
-        res.send("cookie sent successfully");
+        res.cookie('JWT',token,{domain: '.localhost',path:"/",sameSite:'None', maxAge: maxAge*1000,secure:true})
+        res.status(201).json({ user: user._id});
+        // console.log("HI");
+        // res.send("cookie sent successfully");
         
     }catch(error){
         res.json({ status: error.response });
