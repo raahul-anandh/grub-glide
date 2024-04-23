@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Orders from '../Orders';
 
 function OrderHistory(){
     const [orders, setOrders] = useState([
@@ -24,52 +25,9 @@ function OrderHistory(){
         },
       ]);
 
-    return (
-        <div className="order-history">
-            <h2>Order History</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>Order Date</th>
-                  <th>Items</th>
-                  <th>Quantity</th>
-                  <th>Price</th>
-                  <th>Total</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {orders.map((order) => (
-                  <tr key={order.id}>
-                    <td>{order.date}</td>
-                    <td>
-                      <ul>
-                        {order.items.map((item, index) => (
-                          <li key={index}>{item.name}</li>
-                        ))}
-                      </ul>
-                    </td>
-                    <td>
-                      <ul>
-                      {order.items.map((item, index) => (
-                          <li key={index}>{item.quantity}</li>
-                        ))}
-                      </ul>
-                    </td>
-                    <td>
-                      <ul>
-                      {order.items.map((item, index) => (
-                          <li key={index}>{item.price}</li>
-                        ))}
-                      </ul>
-                    </td>
-                    <td>₹{order.total.toFixed(2)}</td>
-                    <td>{order.status}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-    )
+      return(
+        <Orders orders={orders}/>
+      )
+    
 }
 export default OrderHistory;

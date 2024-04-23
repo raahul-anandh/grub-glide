@@ -31,18 +31,26 @@ function Orders({ orders, updateOrderStatus, view }) {
                 <thead>
                     <tr>
                         <th>Order Date</th>
+                        {view === "admin"
+                         ? (<th>Customer</th>)
+                         : ""
+                        }
                         <th>Items</th>
                         <th>Quantity</th>
                         <th>Price</th>
                         <th>Total</th>
                         <th>Status</th>
-                        <th>Action</th> {/* New column for action button */}
+                        {view === "admin"
+                         ? (<th>Action</th>)
+                         : ""
+                        }
                     </tr>
                 </thead>
                 <tbody>
                     {orders.map(order => (
                         <tr key={order.id}>
                             <td>{formatDate(`${order.date}`)}</td>
+                            <td>{order.user}</td>
                             <td>
                                 <ul>
                                     {order.items.map((item, index) => (
