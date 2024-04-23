@@ -134,6 +134,32 @@ plateformRoute.post('/place-order', async (req, res) => {
     }
 });
 
+// Get all orders
+plateformRoute.get('/orders', async (req, res) => {
+    try {
+      const orders = await orderSchema.find();
+      res.json(orders);
+    } catch (error) {
+      console.error('Error fetching orders:', error);
+      res.status(500).json({ status: 'error', message: 'Internal server error' });
+    }
+  });
+  
+  // Update order status
+  plateformRoute.put('/update-order/:id', async (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+  
+    try {
+      await orderSchema.findByIdAndUpdate(id, { status });
+      res.json({ status: 'ok' });
+    } catch (error) {
+      console.error('Error updating order status:', error);
+      res.status(500).json({ status: 'error', message: 'Internal server error' });
+    }
+  });
+  
+
 // --------------------------------------------------------------
 // User
 

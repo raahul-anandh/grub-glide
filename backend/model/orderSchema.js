@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
-    currentDate: {
+    date: {
         type: Date,
         default: Date.now
     },

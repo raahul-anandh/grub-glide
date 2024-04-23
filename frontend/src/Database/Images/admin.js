@@ -5,7 +5,7 @@ const adminAction = [
       actionName: "Add Item",
       imgUrl: "./images/admin/AddItem.jpeg",
       desc: "Add New Food Items",
-      link: "/createfood"
+      link: "/admin/createfood"
     },
 
 
@@ -40,7 +40,7 @@ const adminAction = [
         actionName: "Past Orders",
         imgUrl: "./images/admin/PastOrders.jpeg",
         desc: "View Past Orders. Sort refund issues",
-        link: "/"
+        link: "/admin/vieworders"
 
     },
 
