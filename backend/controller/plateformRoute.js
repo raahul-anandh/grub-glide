@@ -1,6 +1,7 @@
 const express = require("express");
 const userSchema = require("../model/userSchema");
 const foodSchema = require("../model/foodSchema");
+const orderSchema = require("../model/orderSchema");
 const plateformRoute = express.Router();
 const mongoose = require("mongoose");
 const multer = require('multer');
@@ -113,6 +114,66 @@ plateformRoute.delete("/delete-food/:id", async (req, res) => {
         res.status(500).json({ status: "error", message: "Internal server error" });
     }
 })
+
+// --------------------------------------------------------------
+// Order
+plateformRoute.post('/place-order', async (req, res) => {
+    const { userId, items, total } = req.body;
+
+    try {
+        const order = await orderSchema.create({
+            user: userId,
+            items,
+            total
+        });
+
+        res.status(201).json({ status: 'success', data: order });
+    } catch (error) {
+        console.error('Error placing order:', error);
+        res.status(500).json({ status: 'error', message: 'Internal server error' });
+    }
+});
+
+// Get all orders
+plateformRoute.get('/orders', async (req, res) => {
+    try {
+      const orders = await orderSchema.find();
+      res.json(orders);
+    } catch (error) {
+      console.error('Error fetching orders:', error);
+      res.status(500).json({ status: 'error', message: 'Internal server error' });
+    }
+  });
+  
+  // Update order status
+  plateformRoute.put('/update-order/:id', async (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+  
+    try {
+      await orderSchema.findByIdAndUpdate(id, { status });
+      res.json({ status: 'ok' });
+    } catch (error) {
+      console.error('Error updating order status:', error);
+      res.status(500).json({ status: 'error', message: 'Internal server error' });
+    }
+  });
+  
+
+// Route to fetch orders by user ID
+plateformRoute.get('/orders/:userId', async (req, res) => {
+    const { userId } = req.params;
+
+    try {
+        // Finding orders where the user ID matches
+        const orders = await orderSchema.find({ user: userId });
+
+        res.status(200).json(orders);
+    } catch (error) {
+        console.error('Error fetching orders:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 
 
 // --------------------------------------------------------------

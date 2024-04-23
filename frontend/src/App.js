@@ -10,6 +10,7 @@ import Register from "./Components/Login/Register";
 import Admin from "./Components/Admin.jsx";
 import CreateFood from "./Components/Admin/CreateFood";
 import UpdateFood from "./Components/Admin/UpdateFood.jsx";
+import ViewOrders from "./Components/Admin/ViewOrders.jsx";
 
 import "./App.css";
 function App() {
@@ -29,8 +30,9 @@ function App() {
           <Route path = "/register" element={<Register/>}/>
 
           <Route path = "/admin" element={<Admin/>}/>
-          <Route path = "/createfood" element={<CreateFood/>}/>
-          <Route path = "/updatefood" element={<UpdateFood/>}/>
+          <Route path = "/admin/createfood" element={<CreateFood/>}/>
+          <Route path = "/admin/updatefood" element={<UpdateFood/>}/>
+          <Route path = "/admin/vieworders" element={<ViewOrders/>}/>
         </Routes>
       </Router>
     </div>
