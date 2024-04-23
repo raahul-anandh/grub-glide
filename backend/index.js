@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const plateformRoute = require("./controller/plateformRoute");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const cookieParser =require('cookie-parser');
 
 const app = express();
 
@@ -15,6 +16,7 @@ db.on("error", () => console.log("Error occurred"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(cors());
+app.use(cookieParser());
 app.use("/plateform", plateformRoute);
 
 app.listen(4000, () => {

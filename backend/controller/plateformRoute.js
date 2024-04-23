@@ -4,6 +4,10 @@ const foodSchema = require("../model/foodSchema");
 const plateformRoute = express.Router();
 const mongoose = require("mongoose");
 const multer = require('multer');
+const jwt=require('jsonwebtoken');
+const cookieParser=require('cookie-parser');
+const cors=require('cors');
+
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -113,6 +117,27 @@ plateformRoute.delete("/delete-food/:id", async (req, res) => {
 
 // --------------------------------------------------------------
 // User
+
+const app=express();
+// app.use(cookieParser());
+
+
+
+
+plateformRoute.use(cors({
+    origin: 'http://localhost:3000', // Specify allowed origin
+    credentials: true, // Allow cookies
+  }));
+
+  plateformRoute.use(cookieParser());
+
+const maxAge=3*24*60*60;
+const createToken = (id) => {
+    return jwt.sign({id},'secret1135',{
+        expiresIn:maxAge
+    })
+}
+
 plateformRoute.get("/user-list", (req, res) => {
     userSchema.find((err, data) => {
         if(err)
@@ -126,18 +151,31 @@ plateformRoute.post("/create-user", upload.none(), async (req,res)=> {
     
     console.log(req.body);
     try{
-        await userSchema.create({
+        const user=await userSchema.create({
             name: req.body.name,
             email: req.body.email,
             phone: req.body.phone,
             password: req.body.password,
             // orders:{},
         })
-        res.json({ status: "ok" });
+        const token=createToken(user._id);
+
+        res.cookie('JWT1',token,{domain: '.localhost',path:"/",sameSite:'None', maxAge: maxAge*1000,secure:true})
+        res.json({ user: used._id});
+        console.log("HI");
+        res.send("cookie sent successfully");
+        
     }catch(error){
         res.json({ status: error.response });
     }
+    console.log("hi",res.getHeaders());
 
+})
+
+plateformRoute.get("/set-cookies", async (req,res)=>{
+    res.cookie('test5',true);
+    res.send("you got the cookies");
+    // alert("cookies set");
 })
 
 

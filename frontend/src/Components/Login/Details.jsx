@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import cors from "cors";
 
 function DetailsForm(props) {
   const navigate = useNavigate();
@@ -77,15 +78,16 @@ function DetailsForm(props) {
 
     try{
       const response= await axios.post("http://localhost:4000/plateform/create-user",formDataToSend, {
+        withCredentials: true,
         headers:{
           'Content-Type':'multipart/form-data',
         },
       });
-      console.log(response);
+      console.log(response.headers);
       console.log('Form submitted:', formData);
       navigate("/")
     }
-    catch{
+    catch{ 
       alert("Could not create user");
     }
 
