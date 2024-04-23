@@ -160,6 +160,22 @@ plateformRoute.get('/orders', async (req, res) => {
   });
   
 
+// Route to fetch orders by user ID
+plateformRoute.get('/orders/:userId', async (req, res) => {
+    const { userId } = req.params;
+
+    try {
+        // Finding orders where the user ID matches
+        const orders = await orderSchema.find({ user: userId });
+
+        res.status(200).json(orders);
+    } catch (error) {
+        console.error('Error fetching orders:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+
 // --------------------------------------------------------------
 // User
 

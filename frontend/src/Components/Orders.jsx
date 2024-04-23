@@ -50,7 +50,10 @@ function Orders({ orders, updateOrderStatus, view }) {
                     {orders.map(order => (
                         <tr key={order.id}>
                             <td>{formatDate(`${order.date}`)}</td>
-                            <td>{order.user}</td>
+                            {view === "admin"
+                                ? (<td>{order.user}</td>)
+                                : ""
+                            }
                             <td>
                                 <ul>
                                     {order.items.map((item, index) => (
