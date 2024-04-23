@@ -31,7 +31,7 @@ function Cart() {
         }, 0);
         setTotal(total);
 
-        // Calculate completion time
+        // Calculating completion time
         const completionTime = fetchedCartItems.reduce((acc, curr) => {
           const prepTime = parseFloat(curr.prepTime);
           const quantity = parseFloat(cart[curr._id]);
@@ -46,10 +46,36 @@ function Cart() {
     fetchCartItems();
   }, []);
 
-  const handleSubmitCart = () => {
-    // Implement submission of cart data to the backend for database update
-    console.log("Submitting cart data to the backend:", cartItems);
-  };
+  const handleSubmitCart = async () => {
+    try {
+        const userId = localStorage.getItem('user');
+        const items = cartItems.map(item => ({
+            name: item.foodName,
+            quantity: localCart[item._id],
+            price: parseFloat(item.price)
+        }));
+        const cartTotal = parseFloat(total); // Ensuring total is properly initialized
+
+        const response = await axios.post('http://localhost:4000/plateform/place-order', {
+            userId,
+            items,
+            total: cartTotal
+        });
+
+        if (response.data.status === 'success') {
+            alert('Order placed successfully!');
+            // Resetting the cart after successful order placement
+            localStorage.removeItem('cart');
+            setCartItems([]);
+            setTotal(0);
+        } else {
+            throw new Error('Failed to place order');
+        }
+    } catch (error) {
+        console.error('Error placing order:', error);
+        alert('Failed to place order. Please try again later.');
+    }
+};
 
   return (
     <div className="cart-content">
@@ -79,13 +105,7 @@ function Cart() {
       <hr />
       <p className="total">Total: {total}</p>
       <div className="payment-method">
-        <label htmlFor="payment-method">Payment method: </label>
-        <input type="radio" name="payment-method" />
-        <label>Cash</label>
-        <input type="radio" name="payment-method" />
-        <label>UPI</label>
-        <br />
-        <button onClick={handleSubmitCart}>Proceed</button>
+        <button onClick={handleSubmitCart}>Place Order!</button>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 const express = require("express");
 const userSchema = require("../model/userSchema");
 const foodSchema = require("../model/foodSchema");
+const orderSchema = require("../model/orderSchema");
 const plateformRoute = express.Router();
 const mongoose = require("mongoose");
 const multer = require('multer');
@@ -114,6 +115,24 @@ plateformRoute.delete("/delete-food/:id", async (req, res) => {
     }
 })
 
+// --------------------------------------------------------------
+// Order
+plateformRoute.post('/place-order', async (req, res) => {
+    const { userId, items, total } = req.body;
+
+    try {
+        const order = await orderSchema.create({
+            user: userId,
+            items,
+            total
+        });
+
+        res.status(201).json({ status: 'success', data: order });
+    } catch (error) {
+        console.error('Error placing order:', error);
+        res.status(500).json({ status: 'error', message: 'Internal server error' });
+    }
+});
 
 // --------------------------------------------------------------
 // User
