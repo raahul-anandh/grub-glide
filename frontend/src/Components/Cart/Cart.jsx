@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { CartItem } from "./CartItem";
 
 import "../styles/Cart.css";
 
 function Cart() {
+  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0);
   const [completionTime, setCompletionTime] = useState(0);
@@ -79,34 +81,43 @@ function Cart() {
 
   return (
     <div className="cart-content">
-      <p className="completion-time">Your order will be ready in {completionTime} minutes!</p>
-      <div>
-        <table className="item-table">
-          <thead>
-            <tr>
-              <th>Picture</th>
-              <th>Description</th>
-              <th>Price</th>
-              <th>Quantity</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cartItems.map((food) => (
-              <CartItem key={food._id} 
-              foodName={food.foodName} 
-              image = {food.image}
-              serves = {food.serves}
-              price = {food.price}
-              quantity={localCart[food._id]} />
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <hr />
-      <p className="total">Total: {total}</p>
-      <div className="payment-method">
-        <button onClick={handleSubmitCart}>Place Order!</button>
-      </div>
+      {cartItems.length === 0 ? (
+        <div>
+        <p className="empty-cart-message">Nothing in cart! Click to add items</p>
+        <button onClick={() => {navigate("/")}}>Add Items</button>
+        </div>
+      ) : (
+        <>
+          <p className="completion-time">Your order will be ready in {completionTime} minutes!</p>
+          <div>
+            <table className="item-table">
+              <thead>
+                <tr>
+                  <th>Picture</th>
+                  <th>Description</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cartItems.map((food) => (
+                  <CartItem key={food._id} 
+                  foodName={food.foodName} 
+                  image={food.image}
+                  serves={food.serves}
+                  price={food.price}
+                  quantity={localCart[food._id]} />
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <hr />
+          <p className="total">Total: {total}</p>
+          <div className="payment-method">
+            <button onClick={handleSubmitCart}>Place Order!</button>
+          </div>
+        </>
+      )}
     </div>
   );
 }
