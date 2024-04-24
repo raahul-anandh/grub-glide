@@ -291,6 +291,12 @@ plateformRoute.get("/set-cookies", async (req,res)=>{
     // alert("cookies set");
 })
 
+plateformRoute.get('/logout',async(req,res)=>{
+    console.log(res.cookie);
+    res.cookie('JWT','',{maxAge:1});
+    res.send('Logged Out Succesfully');
+})
+
 
 
 module.exports = plateformRoute;
