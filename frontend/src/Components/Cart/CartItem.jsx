@@ -1,6 +1,6 @@
 import React from "react";
 
-function CartItem({ food, quantity, onQuantityChange }) {
+function CartItem({ food, quantity, onQuantityChange, onRemove }) {
   const handleInputChange = (event) => {
     onQuantityChange(event);
   };
@@ -19,6 +19,9 @@ function CartItem({ food, quantity, onQuantityChange }) {
       </td>
       <td>
         <input type="number" value={quantity} onChange={handleInputChange} />
+      </td>
+      <td>
+        <button onClick={onRemove}>Remove</button>
       </td>
     </tr>
   );

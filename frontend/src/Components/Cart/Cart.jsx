@@ -60,6 +60,18 @@ function Cart() {
     calculateTotalAndCompletionTime(cartItems, updatedCart);
   };
 
+  const handleRemoveItem = (foodId) => {
+    const updatedCart = { ...localCart };
+    delete updatedCart[foodId];
+    setLocalCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+    const updatedCartItems = cartItems.filter(item => item._id !== foodId);
+    setCartItems(updatedCartItems);
+
+    calculateTotalAndCompletionTime(updatedCartItems, updatedCart);
+  };
+
   const handleSubmitCart = async () => {
     try {
       const userId = localStorage.getItem('user');
@@ -117,6 +129,7 @@ function Cart() {
                   <th>Description</th>
                   <th>Price</th>
                   <th>Quantity</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -126,6 +139,7 @@ function Cart() {
                     food={food}
                     quantity={localCart[food._id]}
                     onQuantityChange={(event) => handleQuantityChange(event, food._id)}
+                    onRemove={() => handleRemoveItem(food._id)}
                   />
                 ))}
               </tbody>
