@@ -14,7 +14,7 @@ const adminAction = [
         actionName: "Edit Item",
         imgUrl: "./images/admin/EditItem.jpeg",
         desc: "Update food item",      
-        link: "/"
+        link: "/admin/update"
     },
     
 
@@ -23,7 +23,7 @@ const adminAction = [
       actionName: "Delete Item",
       imgUrl: "./images/admin/DeleteItem.jpeg",
       desc: "Permanently Remove any food item",
-      link: "/"
+      link: "/admin/delete"
     },
 
 

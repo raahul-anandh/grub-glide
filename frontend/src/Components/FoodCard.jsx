@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import "./styles/FoodCard.css";
 import QuantityButton from "./Quantity.jsx";
@@ -8,6 +8,8 @@ import QuantityButton from "./Quantity.jsx";
 function FoodCard(food) {
   const navigate = useNavigate();
   const user = localStorage.getItem("user");
+  let { adminAction } = useParams();
+  console.log(adminAction);
   const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
@@ -64,8 +66,15 @@ function FoodCard(food) {
               <br />
               <p>{"Preparation Time: " + food.prepTime}</p>
               <br />
-              <button onClick={updateFood}>Update</button>
-              <button onClick={deleteFood}>Delete</button>
+            
+              {adminAction === "update" ?
+                (<button className = "update-delete-button" onClick={updateFood}>Update</button>)
+                : ""
+              }
+              {adminAction === "delete" ?
+                (<button className = "update-delete-button" onClick={deleteFood}>Delete</button>)
+                : ""
+              }
             </div>
           ) : (
             food.stockAvailable && food.stockAvailable > 0 ? (
@@ -93,7 +102,7 @@ function CreateFoodCard(food) {
       id={food._id}
       foodName={food.foodName}
       image={food.image}
-      servings={food.servings}
+      servings={food.serves}
       price={food.price}
       stockAvailable={food.stockAvailable}
       prepTime={food.prepTime}

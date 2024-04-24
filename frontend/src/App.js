@@ -38,6 +38,7 @@ function App() {
           <Route path = "/admin/createfood" element={<CreateFood/>}/>
           <Route path = "/admin/updatefood" element={<UpdateFood/>}/>
           <Route path = "/admin/vieworders" element={<ViewOrders/>}/>
+          <Route path = "/admin/:adminAction" element={<Cuisine/>}/>
         </Routes>
       </Router>
     </div>
