@@ -51,32 +51,41 @@ function Cuisine() {
   return (
     <div>
       <section className="all-cuisines">
-        <div className="cuisine-container">
+        {chinese.length > 0 ?
+        (<div className="cuisine-container">
           <h1 className="cuisine-name">Chinese</h1>
           <div className="cuisine">
             {chinese.map(food => (
               <CreateFoodCard key={food._id} {...food} />
             ))}
           </div>
-        </div>
+        </div>)
+        : ""
+        }
 
-        <div className="cuisine-container">
+        {indian.length > 0 ?
+        (<div className="cuisine-container">
           <h1 className="cuisine-name">Indian</h1>
           <div className="cuisine">
             {indian.map(food => (
               <CreateFoodCard key={food._id} {...food} />
             ))}
           </div>
-        </div>
+        </div>)
+        : ""
+        }
 
-        <div className="cuisine-container">
+        {snacks.length > 0 ?
+         (<div className="cuisine-container">
           <h1 className="cuisine-name">Snacks</h1>
           <div className="cuisine">
             {snacks.map(food => (
               <CreateFoodCard key={food._id} {...food} />
             ))}
           </div>
-        </div>
+        </div>)
+        : ""
+        }
       </section>
       <ContactSection />
     </div>
