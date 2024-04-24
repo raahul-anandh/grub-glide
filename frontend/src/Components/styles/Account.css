@@ -95,14 +95,11 @@
   .error{
     color: red;
   }
-  .order-history {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
+  
   .order-history {
     max-width: 800px;
     margin: 0 auto;
+    /* margin-top: 6%; */
   }
   
   .order-history h2 {

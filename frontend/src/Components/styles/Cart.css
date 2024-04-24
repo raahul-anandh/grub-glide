@@ -4,9 +4,9 @@
   background-color: #f8f9fa;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   margin: auto;
-  margin-top: 10vh; /* Using vh for responsive margin */
-  max-width: 90vw; /* Using vw for responsive width */
-  padding: 2vw; /* Using vw for responsive padding */
+  margin-top: 15vh; 
+  max-width: 90vw; 
+  padding: 2vw; 
   font-family: "Comfortaa", sans-serif;
 }
 

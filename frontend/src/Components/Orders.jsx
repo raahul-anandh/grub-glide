@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Orders({ orders, updateOrderStatus, view }) {
+function Orders({ orders, updateOrderStatus, view, margin }) {
     const handleUpdateStatus = (orderId) => {
         // Calling the function passed from props to update the status
         updateOrderStatus(orderId);
@@ -25,7 +25,7 @@ function Orders({ orders, updateOrderStatus, view }) {
     };
 
     return (
-        <div className="order-history">
+        <div className="order-history" style={{marginTop: `${margin}`}}>
             <h2>Order History</h2>
             <table>
                 <thead>

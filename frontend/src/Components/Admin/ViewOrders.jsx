@@ -32,7 +32,7 @@ function ViewOrders() {
         }
     };
 
-    return <Orders orders={orders} updateOrderStatus={updateOrderStatus} view = "admin"/>;
+    return <Orders orders={orders} updateOrderStatus={updateOrderStatus} view = "admin" margin = "6%"/>;
 }
 
 export default ViewOrders;
