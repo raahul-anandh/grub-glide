@@ -1,9 +1,9 @@
 import React from 'react';
 
 function Orders({ orders, updateOrderStatus, view, margin }) {
-    const handleUpdateStatus = (orderId) => {
+    const handleUpdateStatus = (orderId, currentStatus) => {
         // Calling the function passed from props to update the status
-        updateOrderStatus(orderId);
+        updateOrderStatus(orderId, currentStatus);
     };
 
     const formatDate = (dateString) => {
@@ -80,7 +80,9 @@ function Orders({ orders, updateOrderStatus, view, margin }) {
                             { view === "admin"
                                 ?
                                 (<td>
-                                    <button onClick={() => handleUpdateStatus(order._id)}>Update Status</button>
+                                    <button onClick={() => handleUpdateStatus(order._id, order.status)}>
+                                    {order.status === "Pending" ? "Update Status" : "Revert Status"}
+                                    </button>
                                 </td>)
                                 : ""
 

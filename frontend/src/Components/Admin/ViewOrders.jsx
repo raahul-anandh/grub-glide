@@ -18,21 +18,24 @@ function ViewOrders() {
         }
     };
 
-    const updateOrderStatus = async (orderId) => {
+    const updateOrderStatus = async (orderId, currentStatus) => {
         try {
-            // Make a request to update the order status
+            // Determine the new status based on the current status
+            const newStatus = currentStatus === "Pending" ? "Delivered" : "Pending";
+            
+            // Make a request to update/revert the order status
             await axios.put(`http://localhost:4000/plateform/update-order/${orderId}`, {
-                status: 'Delivered' // Update status to 'Delivered'
+                status: newStatus
             });
 
-            // Refetch orders after updating status
+            // Refetch orders after updating/reverting status
             fetchOrders();
         } catch (error) {
             console.error('Error updating order status:', error);
         }
     };
 
-    return <Orders orders={orders} updateOrderStatus={updateOrderStatus} view = "admin" margin = "6%"/>;
+    return <Orders orders={orders} updateOrderStatus={updateOrderStatus} view="admin" margin="6%" />;
 }
 
 export default ViewOrders;
