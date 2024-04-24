@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+
 import Cart from "./Components/Cart/Cart";
 import Navbar from "./Components/Navbar";
 import Cuisine from "./Components/Cuisine";
@@ -16,6 +18,9 @@ import "./App.css";
 function App() {
   // localStorage.setItem("user", "admin");
   localStorage.setItem("user", "abc");
+  // useEffect (() => {
+  //   localStorage.clear();
+  // }, [])
   
   return (
     <div className="mainRoot">

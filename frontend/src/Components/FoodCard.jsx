@@ -47,7 +47,6 @@ function FoodCard(food) {
       console.error("Error fetching food details:", error);
     }
   };
-  console.log(localStorage.getItem("cart"));
 
   return (
     <div className="foodcard">
@@ -61,7 +60,7 @@ function FoodCard(food) {
           <p className="price">{"Rs ." + food.price}</p>
           {user === "admin" ? (
             <div>
-              <p>{"Stock: " + food.stockAvailable}</p>
+              <p>{"Stock: " + (food.stockAvailable || "Out of Stock")}</p>
               <br />
               <p>{"Preparation Time: " + food.prepTime}</p>
               <br />
@@ -69,11 +68,18 @@ function FoodCard(food) {
               <button onClick={deleteFood}>Delete</button>
             </div>
           ) : (
-            <QuantityButton
-              initialQuantity={quantity}
-              stockAvailable={food.stockAvailable}
-              onQuantityChange={handleQuantityChange}
-            />
+            food.stockAvailable && food.stockAvailable > 0 ? (
+              <QuantityButton
+                initialQuantity={quantity}
+                stockAvailable={food.stockAvailable}
+                onQuantityChange={handleQuantityChange}
+              />
+            ) : (
+              <div>
+                <br/>
+                <p className="out-of-stock">Out of Stock</p>
+              </div>
+            )
           )}
         </div>
       </div>
@@ -87,10 +93,10 @@ function CreateFoodCard(food) {
       id={food._id}
       foodName={food.foodName}
       image={food.image}
-      servings={food.serves}
+      servings={food.servings}
       price={food.price}
       stockAvailable={food.stockAvailable}
-      prepTime = {food.prepTime}
+      prepTime={food.prepTime}
     />
   );
 }

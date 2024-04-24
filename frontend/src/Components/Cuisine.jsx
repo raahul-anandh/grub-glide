@@ -29,7 +29,7 @@ function Cuisine() {
       console.error("Error fetching food data:", error);
     }
   };
-  
+  console.log(localStorage.getItem("cart"));
   return (
     <div>
       <section className="all-cuisines">

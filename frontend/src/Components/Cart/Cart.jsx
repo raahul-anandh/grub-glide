@@ -49,35 +49,48 @@ function Cart() {
   }, []);
 
   const handleSubmitCart = async () => {
-    try {
-        const userId = localStorage.getItem('user');
-        const items = cartItems.map(item => ({
-            name: item.foodName,
-            quantity: localCart[item._id],
-            price: parseFloat(item.price)
-        }));
-        const cartTotal = parseFloat(total); // Ensuring total is properly initialized
+  try {
+    const userId = localStorage.getItem('user');
+    const items = cartItems.map(item => ({
+      name: item.foodName,
+      quantity: localCart[item._id],
+      price: parseFloat(item.price)
+    }));
 
-        const response = await axios.post('http://localhost:4000/plateform/place-order', {
-            userId,
-            items,
-            total: cartTotal
+    // Calculate cart total
+    const cartTotal = parseFloat(total);
+
+    // Send the order details to the server
+    const response = await axios.post('http://localhost:4000/plateform/place-order', {
+      userId,
+      items,
+      total: cartTotal
+    });
+
+    if (response.data.status === 'success') {
+      alert('Order placed successfully!');
+      
+      // Update stock for each food item in the cart
+      for (const item of cartItems) {
+        const remainingStock = item.stockAvailable - localCart[item._id];
+        await axios.put(`http://localhost:4000/plateform/update-food/${item._id}`, {
+          stockAvailable: remainingStock
         });
+      }
 
-        if (response.data.status === 'success') {
-            alert('Order placed successfully!');
-            // Resetting the cart after successful order placement
-            localStorage.removeItem('cart');
-            setCartItems([]);
-            setTotal(0);
-        } else {
-            throw new Error('Failed to place order');
-        }
-    } catch (error) {
-        console.error('Error placing order:', error);
-        alert('Failed to place order. Please try again later.');
+      // Reset the cart after successful order placement
+      localStorage.removeItem('cart');
+      setCartItems([]);
+      setTotal(0);
+    } else {
+      throw new Error('Failed to place order');
     }
+  } catch (error) {
+    console.error('Error placing order:', error);
+    alert('Failed to place order. Please try again later.');
+  }
 };
+
 
   return (
     <div className="cart-content">
