@@ -1,7 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+
 import Cart from "./Components/Cart/Cart";
 import Navbar from "./Components/Navbar";
 import Cuisine from "./Components/Cuisine";
+import { SearchProvider } from "./Components/SearchContext.js";
 
 import Account from "./Components/Account/Account";
 import Login from "./Components/Login/Login";
@@ -22,6 +25,7 @@ function App() {
   return (
     <div className="mainRoot">
       <Router>
+        <SearchProvider>
         <Navbar/>
         <Routes>
           <Route path = "/" element = {<Cuisine/>}/>
@@ -35,7 +39,9 @@ function App() {
           <Route path = "/admin/createfood" element={<CreateFood/>}/>
           <Route path = "/admin/updatefood" element={<UpdateFood/>}/>
           <Route path = "/admin/vieworders" element={<ViewOrders/>}/>
+          <Route path = "/admin/:adminAction" element={<Cuisine/>}/>
         </Routes>
+        </SearchProvider>
       </Router>
     </div>
   );

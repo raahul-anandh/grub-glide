@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { CartItem } from "./CartItem";
+import CartItem  from "./CartItem";
 
 import "../styles/Cart.css";
 
@@ -10,7 +10,7 @@ function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0);
   const [completionTime, setCompletionTime] = useState(0);
-  const [localCart, setLocalCart] = useState([]);
+  const [localCart, setLocalCart] = useState({});
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -26,20 +26,7 @@ function Cart() {
         const fetchedCartItems = responses.map(response => response.data.data);
         setCartItems(fetchedCartItems);
 
-        const total = fetchedCartItems.reduce((acc, curr) => {
-          const price = parseFloat(curr.price);
-          const quantity = parseFloat(cart[curr._id]);
-          return acc + price * quantity;
-        }, 0);
-        setTotal(total);
-
-        // Calculating completion time
-        const completionTime = fetchedCartItems.reduce((acc, curr) => {
-          const prepTime = parseFloat(curr.prepTime);
-          const quantity = parseFloat(cart[curr._id]);
-          return acc + prepTime * quantity;
-        }, 0);
-        setCompletionTime(completionTime);
+        calculateTotalAndCompletionTime(fetchedCartItems, cart);
       } catch (error) {
         console.error("Error fetching cart items:", error);
       }
@@ -48,43 +35,88 @@ function Cart() {
     fetchCartItems();
   }, []);
 
+  const calculateTotalAndCompletionTime = (fetchedCartItems, cart) => {
+    const total = fetchedCartItems.reduce((acc, curr) => {
+      const price = parseFloat(curr.price);
+      const quantity = parseFloat(cart[curr._id]);
+      return acc + price * quantity;
+    }, 0);
+    setTotal(total);
+
+    const completionTime = fetchedCartItems.reduce((acc, curr) => {
+      const prepTime = parseFloat(curr.prepTime);
+      const quantity = parseFloat(cart[curr._id]);
+      return acc + prepTime * quantity;
+    }, 0);
+    setCompletionTime(completionTime);
+  };
+
+  const handleQuantityChange = (event, foodId) => {
+    const newQuantity = parseInt(event.target.value);
+    const updatedCart = { ...localCart, [foodId]: newQuantity };
+    setLocalCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+    calculateTotalAndCompletionTime(cartItems, updatedCart);
+  };
+
+  const handleRemoveItem = (foodId) => {
+    const updatedCart = { ...localCart };
+    delete updatedCart[foodId];
+    setLocalCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+    const updatedCartItems = cartItems.filter(item => item._id !== foodId);
+    setCartItems(updatedCartItems);
+
+    calculateTotalAndCompletionTime(updatedCartItems, updatedCart);
+  };
+
   const handleSubmitCart = async () => {
     try {
-        const userId = localStorage.getItem('user');
-        const items = cartItems.map(item => ({
-            name: item.foodName,
-            quantity: localCart[item._id],
-            price: parseFloat(item.price)
-        }));
-        const cartTotal = parseFloat(total); // Ensuring total is properly initialized
+      const userId = localStorage.getItem('user');
+      const items = cartItems.map(item => ({
+        name: item.foodName,
+        quantity: localCart[item._id],
+        price: parseFloat(item.price)
+      }));
 
-        const response = await axios.post('http://localhost:4000/plateform/place-order', {
-            userId,
-            items,
-            total: cartTotal
-        });
+      const cartTotal = parseFloat(total);
 
-        if (response.data.status === 'success') {
-            alert('Order placed successfully!');
-            // Resetting the cart after successful order placement
-            localStorage.removeItem('cart');
-            setCartItems([]);
-            setTotal(0);
-        } else {
-            throw new Error('Failed to place order');
+      const response = await axios.post('http://localhost:4000/plateform/place-order', {
+        userId,
+        items,
+        total: cartTotal
+      });
+
+      if (response.data.status === 'success') {
+        alert('Order placed successfully!');
+        
+        for (const item of cartItems) {
+          const remainingStock = item.stockAvailable - localCart[item._id];
+          await axios.put(`http://localhost:4000/plateform/update-food/${item._id}`, {
+            stockAvailable: remainingStock
+          });
         }
+
+        localStorage.removeItem('cart');
+        setCartItems([]);
+        setTotal(0);
+      } else {
+        throw new Error('Failed to place order');
+      }
     } catch (error) {
-        console.error('Error placing order:', error);
-        alert('Failed to place order. Please try again later.');
+      console.error('Error placing order:', error);
+      alert('Failed to place order. Please try again later.');
     }
-};
+  };
 
   return (
     <div className="cart-content">
       {cartItems.length === 0 ? (
         <div>
-        <p className="empty-cart-message">Nothing in cart! Click to add items</p>
-        <button onClick={() => {navigate("/")}}>Add Items</button>
+          <p className="empty-cart-message">Nothing in cart! Click to add items</p>
+          <button onClick={() => {navigate("/")}}>Add Items</button>
         </div>
       ) : (
         <>
@@ -97,16 +129,18 @@ function Cart() {
                   <th>Description</th>
                   <th>Price</th>
                   <th>Quantity</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 {cartItems.map((food) => (
-                  <CartItem key={food._id} 
-                  foodName={food.foodName} 
-                  image={food.image}
-                  serves={food.serves}
-                  price={food.price}
-                  quantity={localCart[food._id]} />
+                  <CartItem
+                    key={food._id} 
+                    food={food}
+                    quantity={localCart[food._id]}
+                    onQuantityChange={(event) => handleQuantityChange(event, food._id)}
+                    onRemove={() => handleRemoveItem(food._id)}
+                  />
                 ))}
               </tbody>
             </table>

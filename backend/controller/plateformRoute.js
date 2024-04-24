@@ -146,6 +146,21 @@ plateformRoute.delete("/delete-food/:id", async (req, res) => {
     }
 })
 
+// Search food by name
+plateformRoute.get("/search-food", async (req, res) => {
+    const { foodName } = req.query;
+  
+    try {
+      const searchResults = await foodSchema.find({
+        foodName: { $regex: new RegExp(foodName, "i") }, // Case-insensitive search
+      });
+      res.json({ status: "ok", data: searchResults});
+    } catch (error) {
+      console.error("Error searching for food items:", error);
+      res.status(500).json({ status: "error", message: "Internal server error" });
+    }
+  });
+  
 // --------------------------------------------------------------
 // Order
 plateformRoute.post('/place-order', requireAuth, async (req, res) => {

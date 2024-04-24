@@ -4,9 +4,9 @@
   background-color: #f8f9fa;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   margin: auto;
-  margin-top: 10vh; /* Using vh for responsive margin */
-  max-width: 90vw; /* Using vw for responsive width */
-  padding: 2vw; /* Using vw for responsive padding */
+  margin-top: 15vh; 
+  max-width: 90vw; 
+  padding: 2vw; 
   font-family: "Comfortaa", sans-serif;
 }
 
@@ -76,6 +76,11 @@
   width: 10vw;
 }
 
+.cart-item button{
+  font-size: 1.5vw;
+  padding: 2px 5px;
+}
+
 .total {
   font-size: 2vw;
   margin-top: 1vh;
@@ -129,7 +134,7 @@
   }
 
   .cart-item img{
-    width: 20vw;
+    width: 15vw;
     height: auto;
   }
   .cart-item h1{
