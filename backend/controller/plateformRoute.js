@@ -3,12 +3,27 @@ const userSchema = require("../model/userSchema");
 const foodSchema = require("../model/foodSchema");
 const orderSchema = require("../model/orderSchema");
 const plateformRoute = express.Router();
+const authRoute= express.Router();
 const mongoose = require("mongoose");
 const multer = require('multer');
 const jwt=require('jsonwebtoken');
 const cookieParser=require('cookie-parser');
 const cors=require('cors');
+const {requireAuth}=require('../middleware/authMiddleware');
 
+
+
+
+const handleErrors=(err)=> {
+    console.log(err.message,err.code);
+    let errors= {email: '',phone:'',password:''}
+
+    if(err.code===11000) {
+        errors.email = "That email is already registered";
+        return errors;
+    }
+    return errors;
+}
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -21,6 +36,22 @@ const storage = multer.diskStorage({
   })
   
   const upload = multer({ storage: storage })
+
+//redirect
+plateformRoute.get("/redirect",upload.none(),async(req,res) => {
+    console.log("redirecting to login");
+    try{
+        res.redirect('http://localhost:3000/login');
+    }
+    catch(err){
+        console.log(err);
+    }
+})
+
+plateformRoute.use(cors({
+    origin: 'http://localhost:3000', // Specify allowed origin
+    credentials: true, // Allow cookies
+  }));
 
 // Food
 plateformRoute.post("/create-food", upload.single("image"), async (req, res) => {
@@ -43,7 +74,7 @@ plateformRoute.post("/create-food", upload.single("image"), async (req, res) => 
     }
 })
 
-plateformRoute.get("/food-list", async(req, res) => {
+plateformRoute.get("/food-list", requireAuth, async(req, res) => {
     try{
         foodSchema.find({}).then(data => {
             res.send({status: "ok", data: data})
@@ -117,7 +148,7 @@ plateformRoute.delete("/delete-food/:id", async (req, res) => {
 
 // --------------------------------------------------------------
 // Order
-plateformRoute.post('/place-order', async (req, res) => {
+plateformRoute.post('/place-order', requireAuth, async (req, res) => {
     const { userId, items, total } = req.body;
 
     try {
@@ -179,18 +210,11 @@ plateformRoute.get('/orders/:userId', async (req, res) => {
 // --------------------------------------------------------------
 // User
 
-const app=express();
+// const app=express();
 // app.use(cookieParser());
 
 
-
-
-plateformRoute.use(cors({
-    origin: 'http://localhost:3000', // Specify allowed origin
-    credentials: true, // Allow cookies
-  }));
-
-  plateformRoute.use(cookieParser());
+plateformRoute.use(cookieParser());
 
 const maxAge=3*24*60*60;
 const createToken = (id) => {
@@ -210,7 +234,7 @@ plateformRoute.get("/user-list", (req, res) => {
 
 plateformRoute.post("/create-user", upload.none(), async (req,res)=> {
     
-    console.log(req.body);
+    // console.log(req.body);
     try{
         const user=await userSchema.create({
             name: req.body.name,
@@ -220,7 +244,6 @@ plateformRoute.post("/create-user", upload.none(), async (req,res)=> {
             // orders:{},
         })
         const token=createToken(user._id);
-
         res.cookie('JWT',token,{domain: '.localhost',path:"/",sameSite:'None', maxAge: maxAge*1000,secure:true})
         res.status(201).json({ user: user._id});
         // console.log("HI");
@@ -228,9 +251,23 @@ plateformRoute.post("/create-user", upload.none(), async (req,res)=> {
         
     }catch(error){
         res.json({ status: error.response });
+        console.log("Error in server creating user",error);
     }
-    console.log("hi",res.getHeaders());
+    // console.log("hi",res.getHeaders());
 
+})
+
+plateformRoute.post("/login",upload.none(),async(req,res)=>{
+    const {email,password}=req.body
+    try{
+        const user= await userSchema.login(email, password);
+        const token=createToken(user._id);
+        res.cookie('JWT',token,{domain: '.localhost',path:"/",sameSite:'None', maxAge: maxAge*1000,secure:true})
+        res.status(200).json({user:user._id});
+    }
+    catch(err){
+        res.status(400).json({});
+    }
 })
 
 plateformRoute.get("/set-cookies", async (req,res)=>{

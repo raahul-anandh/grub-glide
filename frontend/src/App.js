@@ -15,7 +15,9 @@ import ViewOrders from "./Components/Admin/ViewOrders.jsx";
 import "./App.css";
 function App() {
   // localStorage.setItem("user", "admin");
+  // localStorage.clear();
   localStorage.setItem("user", "abc");
+
   
   return (
     <div className="mainRoot">

@@ -15,7 +15,7 @@ function Cuisine() {
 
   const getFood = async () => {
     try {
-      const result = await axios.get("http://localhost:4000/plateform/food-list");
+      const result = await axios.get("http://localhost:4000/plateform/food-list",{withCredentials: true});
       const foodList = result.data.data;
       // Filter food into different arrays based on category
       const chineseFoods = foodList.filter(food => food.category === "chinese");
