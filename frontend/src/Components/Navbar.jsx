@@ -22,10 +22,6 @@ function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []); 
 
-  // const handleSearch = (results) => {
-  //   setSearchResults(results);
-  // }
-    // console.log("From Nav: ", searchResults);
   
   return (
     <nav className={`Navbar ${isScrolled ? "scrolled" : "default"}`}>
